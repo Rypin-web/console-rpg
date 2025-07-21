@@ -1,4 +1,4 @@
-import type {State} from "./state.t.ts";
+import type {State} from "../types/state.t.ts";
 
 type Listener = [() => void, keyof State]
 const listeners: Listener[] = []
@@ -29,6 +29,7 @@ export function updateState<T extends keyof State>(key: T, values: Partial<State
     if (!Object.hasOwn(state, key)) throw new Error(`Unknown state key: ${key}`)
 
     if (typeof state[key] === 'object' && !Array.isArray(state[key])) state[key] = {...state[key], ...values}
+    //@ts-ignore
     if (Array.isArray(state[key])) state[key] = [...values as State[T]]
 
     listeners.forEach((l) => {

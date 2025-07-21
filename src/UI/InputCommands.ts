@@ -1,4 +1,5 @@
 import {getState, subscribeState, updateState} from "../state/state.ts";
+import {parseCommand} from "../commands/parser.ts";
 
 export function setupInputCommands(el: HTMLDivElement) {
     const updateUi = () => {
@@ -9,18 +10,16 @@ export function setupInputCommands(el: HTMLDivElement) {
 
     document.addEventListener('keydown', (ev: KeyboardEvent) => {
         const {current, history, historyPosition} = getState('inputCommands')
-        const infoScreen = getState('infoScreen')
+
         if (['Key', 'Spa', 'Dig'].includes(ev.code.slice(0, 3))) {
-            if(current.length > 110) return
+            if (current.length > 110) return
             updateState('inputCommands', {current: [...current, ev.key]})
         }
         if (ev.code === 'Backspace') {
-            updateState('inputCommands', {current: [...current.splice(0, current.length - 1)]})
+            updateState('inputCommands', {current: current.slice(0, -1)})
         }
-        if (ev.code === 'Enter') {
-            updateState('infoScreen', [current.join(''), ...infoScreen])
-            updateState('inputCommands', {current: [], history: [current.join(''), ...history]})
-        }
+        if (ev.code === 'Enter') parseCommand(current.join(''))
+
 
         if (ev.code === 'ArrowUp') {
             if (history.length === 0) return

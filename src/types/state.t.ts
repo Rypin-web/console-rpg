@@ -1,4 +1,4 @@
-import type {CommandsState} from "../types/ui.t.ts";
+import type {CommandsState} from "./ui.t.ts";
 
 export interface State {
     inputCommands: CommandsState,

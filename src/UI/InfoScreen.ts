@@ -1,15 +1,14 @@
 import {getState, subscribeState} from "../state/state.ts";
 
-let prevState: string[] = []
-
 export function setupMessageScreen(root: HTMLDivElement): void {
     const updateUi = () => {
         const currentState = getState('infoScreen')
-        const newState = currentState.filter(el => !prevState.includes(el))
-        newState.forEach((el)=>{
-            root.insertAdjacentHTML('beforeend', `<p>${el}</p>`)
+        root.innerHTML = ''
+        currentState.forEach((el) => {
+            root.insertAdjacentHTML('afterbegin', `<p>${el}</p>`)
         })
-        prevState = [...currentState]
+        if (currentState.length > 3) if (root.firstChild) root.firstChild.remove()
+
     }
 
     subscribeState(updateUi, 'infoScreen')
