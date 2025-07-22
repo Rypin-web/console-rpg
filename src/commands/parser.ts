@@ -6,19 +6,20 @@ const commands: Commands = {
     eho: Eho,
 }
 
+function isValidCommand (cmd: string):cmd is keyof Commands {
+    return cmd in commands
+}
+
 export function parseCommand(inputStroke: string): void {
     const parsedCommand: string = inputStroke.split(' ')[0]
     const args = inputStroke.split(' ').splice(1, inputStroke.length).join(' ')
     const {current, history} = getState('inputCommands')
 
-    if (Object.hasOwn(commands, parsedCommand)) {
+    if (isValidCommand(parsedCommand)) {
         commands[parsedCommand](args)
     } else Eho('Unknown command')
     if (current.length > 0) {
-        if (history.length > 31) updateState('inputCommands', {
-            current: [],
-            history: [current.join(''), ...history.splice(0, history.length - 1)]
-        })
-        else updateState('inputCommands', {current: [], history: [current.join(''), ...history]})
+        const newHistory = [current.join(''), ...history.slice(0, 30)]
+        updateState('inputCommands', {current: [], history: newHistory, historyPosition: -1})
     }
 }
