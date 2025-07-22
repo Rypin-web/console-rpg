@@ -1,10 +1,11 @@
 import { getState, updateState } from '../../state/state.js'
+import {MAX_LENGTH_INFOSCREEN} from "../../constants.ts";
 
-export function Eho (text?: string):void {
+export function Eho (text: string):void {
   const infoScreen = getState('infoScreen')
-  if (infoScreen.length > 31) updateState('infoScreen', [
+  if (infoScreen.length > MAX_LENGTH_INFOSCREEN) updateState('infoScreen', [
       text,
-      ...infoScreen.slice(0, infoScreen.length - 1)
+      ...infoScreen.slice(0, -1)
   ])
   else updateState('infoScreen', [text, ...infoScreen])
 }

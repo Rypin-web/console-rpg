@@ -1,9 +1,12 @@
 import {Eho} from "./system/eho.ts";
 import type {Commands} from "../types/commands.t.ts";
 import {getState, updateState} from "../state/state.ts";
+import {MAX_LENGTH_HiSTORY} from "../constants.ts";
+import {Help} from "./system/help.ts";
 
 const commands: Commands = {
     eho: Eho,
+    help: Help
 }
 
 function isValidCommand (cmd: string):cmd is keyof Commands {
@@ -18,8 +21,9 @@ export function parseCommand(inputStroke: string): void {
     if (isValidCommand(parsedCommand)) {
         commands[parsedCommand](args)
     } else Eho('Unknown command')
+
     if (current.length > 0) {
-        const newHistory = [current.join(''), ...history.slice(0, 30)]
+        const newHistory = [current.join(''), ...history.slice(0, MAX_LENGTH_HiSTORY)]
         updateState('inputCommands', {current: [], history: newHistory, historyPosition: -1})
     }
 }

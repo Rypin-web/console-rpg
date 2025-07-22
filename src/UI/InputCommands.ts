@@ -1,5 +1,6 @@
 import {getState, subscribeState, updateState} from "../state/state.ts";
 import {parseCommand} from "../commands/parser.ts";
+import {MAX_LENGTH_INPUT} from "../constants.ts";
 
 export function setupInputCommands(el: HTMLDivElement) {
     const updateUi = () => {
@@ -12,7 +13,7 @@ export function setupInputCommands(el: HTMLDivElement) {
         const {current, history, historyPosition} = getState('inputCommands')
 
         if (['Key', 'Spa', 'Dig'].includes(ev.code.slice(0, 3))) {
-            if (current.length > 110) return
+            if (current.length > MAX_LENGTH_INPUT) return
             updateState('inputCommands', {current: [...current, ev.key]})
         }
         if (ev.code === 'Backspace') {

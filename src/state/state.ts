@@ -25,11 +25,14 @@ export function getState<T extends keyof State>(stateName: T): Readonly<State[T]
     return state[stateName]
 }
 
-export function updateState<T extends keyof State>(key: T, values: Partial<State[T]>): void {
+export function updateState<T extends keyof State>(
+    key: T,
+    values: State[T] extends any[] ? State[T] : Partial<State[T]>
+): void {
     if (!Object.hasOwn(state, key)) throw new Error(`Unknown state key: ${key}`)
 
-    if (typeof state[key] === 'object') state[key] = {...state[key], ...values}
     if (Array.isArray(state[key])) state[key] = values as State[T]
+    else state[key] = {...state[key], ...values as Partial<State[T]>}
 
     listeners.forEach((l) => {
         if (l[1] === key) l[0]()
