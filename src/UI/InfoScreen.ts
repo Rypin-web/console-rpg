@@ -6,7 +6,7 @@ export function setupMessageScreen(root: HTMLDivElement): void {
         const currentState = getState('infoScreen')
         root.innerHTML = ''
         currentState.forEach((el) => {
-            root.insertAdjacentHTML('afterbegin', `<p>${el}</p>`)
+            root.insertAdjacentHTML('afterbegin', `<p>${el.length > 0 ? el : '\n\n\n\n\n\n'}</p>`)
         })
         if (currentState.length > MAX_LENGTH_INFOSCREEN) if (root.firstChild) root.firstChild.remove()
 

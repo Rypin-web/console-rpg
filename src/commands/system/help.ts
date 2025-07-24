@@ -11,7 +11,6 @@ const commandsInfo: CommandsInfo = {
 }
 
 export async function Help(type: keyof CommandsInfo | '') {
-    await Eho('      ')
     if (!Object.hasOwn(commandsInfo, type) && type !== '') {
         await Eho('Unknown help type')
         return
