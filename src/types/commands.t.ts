@@ -4,5 +4,5 @@ export interface Commands {
 }
 
 export interface CommandsInfo {
-    system: string,
+    system: string[],
 }
