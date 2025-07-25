@@ -6,12 +6,21 @@ import {Help} from "./system/help.ts";
 import {Clear} from "./system/clear.ts";
 
 const commands: Commands = {
-    eho: Eho,
-    help: Help,
-    clear: Clear
+    eho: {
+        fn: Eho,
+        requireArgs: true
+    },
+    help: {
+        fn: Help,
+        requireArgs: true
+    },
+    clear: {
+        fn: Clear,
+        requireArgs: false
+    }
 }
 
-function isValidCommand (cmd: string):cmd is keyof Commands {
+function isValidCommand(cmd: string): cmd is keyof Commands {
     return cmd in commands
 }
 
@@ -21,9 +30,9 @@ export async function parseCommand(inputStroke: string) {
     const {current, history} = getState('inputCommands')
 
     await Eho('')
-    if (isValidCommand(parsedCommand)) {
-        commands[parsedCommand](args)
-    } else Eho('Unknown command')
+    if (isValidCommand(parsedCommand) && commands[parsedCommand].requireArgs) commands[parsedCommand].fn(args)
+    else if ((isValidCommand(parsedCommand) && !commands[parsedCommand].requireArgs)) commands[parsedCommand].fn()
+    else await Eho('Unknown command')
 
     if (current.length > 0) {
         const newHistory = [current.join(''), ...history.slice(0, MAX_LENGTH_HiSTORY)]

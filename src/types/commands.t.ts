@@ -1,9 +1,19 @@
-export interface Commands {
-    eho: (text:string) =>void,
-    help: (type:keyof  CommandsInfo | '')=>void,
-    clear: () => void
+export type Commands = {
+    eho: CommandWithArgs
+    help: CommandWithArgs,
+    clear: CommandWithoutArgs
 }
 
-export interface CommandsInfo {
+export type CommandsInfo = {
     system: string[],
+}
+
+export type CommandWithArgs = {
+    fn(args: string): void,
+    requireArgs: true
+}
+
+export type CommandWithoutArgs = {
+    fn(): void,
+    requireArgs: false
 }

@@ -23,6 +23,8 @@ export function setupInputCommands(el: HTMLDivElement) {
 
 
         if (ev.code === 'ArrowUp') {
+            ev.preventDefault()
+
             if (history.length === 0) return
             if (historyPosition > history.length - 2) {
                 updateState('inputCommands', {
@@ -37,6 +39,8 @@ export function setupInputCommands(el: HTMLDivElement) {
             })
         }
         if (ev.code === 'ArrowDown') {
+            ev.preventDefault()
+
             if (history.length === 0) return
             if (historyPosition - 1 < 0) {
                 updateState('inputCommands', {
