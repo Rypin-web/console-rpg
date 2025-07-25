@@ -12,7 +12,7 @@ const commandsInfo: CommandsInfo = {
 
 export async function Help(type: keyof CommandsInfo | '') {
     if (!Object.hasOwn(commandsInfo, type) && type !== '') {
-        await Eho('Unknown help type')
+        await Eho('Unknown help type', 'error')
         return
     }
     if (type === '') for (const e of [
@@ -20,6 +20,6 @@ export async function Help(type: keyof CommandsInfo | '') {
         '- Cистемные: help system',
         '- Игрока: help player',
         '- Окружения: help world'
-    ]) await Eho(e)
-    else for (const e of commandsInfo[type]) await Eho(e)
+    ]) await Eho(e, 'info')
+    else for (const e of commandsInfo[type]) await Eho(e, 'info')
 }

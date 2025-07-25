@@ -38,7 +38,7 @@ export async function parseCommand(inputStroke: string) {
     await Eho('')
     if (isValidCommand(parsedCommand) && commands[parsedCommand].requireArgs) await commands[parsedCommand].fn(args)
     else if ((isValidCommand(parsedCommand) && !commands[parsedCommand].requireArgs)) await commands[parsedCommand].fn()
-    else await Eho('Unknown command')
+    else await Eho('Unknown command', 'error')
 
     if (current.length > 0) {
         const newHistory = [current.join(''), ...history.slice(0, MAX_LENGTH_HiSTORY)]

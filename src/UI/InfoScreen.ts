@@ -8,7 +8,8 @@ export function setupMessageScreen(root: HTMLDivElement): void {
         const currentState = getState('infoScreen')
         root.innerHTML = ''
         currentState.forEach((el) => {
-            root.insertAdjacentHTML('afterbegin', `<p>${el.length > 0 ? el : '\n'}</p>`)
+            root.insertAdjacentHTML('afterbegin', `<p class='${el[1] === 'undefined' ? '' : 'message-' + el[1]}'>
+${el[0].length > 0 ? el[0] : '\n'}</p>`)
             body.scrollIntoView({
                 behavior: 'instant',
                 block: 'end'

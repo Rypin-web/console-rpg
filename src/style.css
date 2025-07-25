@@ -38,6 +38,12 @@ body {
   overflow: auto;
 }
 
+.message-error{ color: darkred; }
+.message-info{ color: aqua; }
+.message-notification{ color: gold; }
+.message-combat{ color: salmon; }
+.message-success{ color: mediumspringgreen; }
+
 p{
   margin: 1px 0;
   min-height: 24px;
