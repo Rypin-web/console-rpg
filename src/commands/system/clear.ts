@@ -1,5 +1,5 @@
 import {updateState} from "../../state/state.ts";
 
-export function Clear () {
+export async function Clear () {
     updateState('infoScreen', [])
 }

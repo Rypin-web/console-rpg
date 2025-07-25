@@ -25,17 +25,25 @@ function isValidCommand(cmd: string): cmd is keyof Commands {
 }
 
 export async function parseCommand(inputStroke: string) {
+    if (!getState('flags').canSendCommand) {
+        updateState('flags', {canSendCommand: true})
+        return
+    }
+
     const parsedCommand: string = inputStroke.split(' ')[0]
     const args = inputStroke.split(' ').splice(1, inputStroke.length).join(' ')
     const {current, history} = getState('inputCommands')
 
+    updateState('flags', {canSendCommand: false})
     await Eho('')
-    if (isValidCommand(parsedCommand) && commands[parsedCommand].requireArgs) commands[parsedCommand].fn(args)
-    else if ((isValidCommand(parsedCommand) && !commands[parsedCommand].requireArgs)) commands[parsedCommand].fn()
+    if (isValidCommand(parsedCommand) && commands[parsedCommand].requireArgs) await commands[parsedCommand].fn(args)
+    else if ((isValidCommand(parsedCommand) && !commands[parsedCommand].requireArgs)) await commands[parsedCommand].fn()
     else await Eho('Unknown command')
 
     if (current.length > 0) {
         const newHistory = [current.join(''), ...history.slice(0, MAX_LENGTH_HiSTORY)]
         updateState('inputCommands', {current: [], history: newHistory, historyPosition: -1})
     }
+
+    updateState('flags', {canSendCommand: true})
 }

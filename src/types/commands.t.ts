@@ -9,11 +9,11 @@ export type CommandsInfo = {
 }
 
 export type CommandWithArgs = {
-    fn(args: string): void,
+    fn(args: string): Promise<void>,
     requireArgs: true
 }
 
 export type CommandWithoutArgs = {
-    fn(): void,
+    fn(): Promise<void>,
     requireArgs: false
 }

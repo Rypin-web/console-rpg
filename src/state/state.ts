@@ -4,6 +4,9 @@ type Listener = [() => void, keyof State]
 const listeners: Listener[] = []
 
 const state: State = {
+    flags:{
+        canSendCommand: true
+    },
     inputCommands: {
         current: [],
         history: [],
