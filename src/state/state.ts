@@ -4,7 +4,7 @@ type Listener = [() => void, keyof State]
 const listeners: Listener[] = []
 
 const state: State = {
-    flags:{
+    flags: {
         canSendCommand: true
     },
     inputCommands: {
@@ -12,14 +12,15 @@ const state: State = {
         history: [],
         historyPosition: -1
     },
-    infoScreen: []
+    infoScreen: [],
+    player: undefined
 }
 
 export function subscribeState(l: Listener[0], t: Listener[1]) {
     listeners.push([l, t])
     return () => {
-        const index = listeners.findIndex(([fn, key])=> (fn === l && key === t))
-        if(index !== -1) listeners.splice(index, 1)
+        const index = listeners.findIndex(([fn, key]) => (fn === l && key === t))
+        if (index !== -1) listeners.splice(index, 1)
     }
 }
 
@@ -40,4 +41,5 @@ export function updateState<T extends keyof State>(
     listeners.forEach((l) => {
         if (l[1] === key) l[0]()
     })
+    console.log(state)
 }

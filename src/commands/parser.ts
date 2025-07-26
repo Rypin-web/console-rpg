@@ -4,6 +4,7 @@ import {getState, updateState} from "../state/state.ts";
 import {MAX_LENGTH_HiSTORY} from "../constants.ts";
 import {Help} from "./system/help.ts";
 import {Clear} from "./system/clear.ts";
+import {Start} from "./system/start.ts";
 
 const commands: Commands = {
     eho: {
@@ -17,6 +18,10 @@ const commands: Commands = {
     clear: {
         fn: Clear,
         requireArgs: false
+    },
+    start: {
+        fn: Start,
+        requireArgs: true
     }
 }
 
@@ -38,7 +43,7 @@ export async function parseCommand(inputStroke: string) {
     await Eho('')
     if (isValidCommand(parsedCommand) && commands[parsedCommand].requireArgs) await commands[parsedCommand].fn(args)
     else if ((isValidCommand(parsedCommand) && !commands[parsedCommand].requireArgs)) await commands[parsedCommand].fn()
-    else await Eho('Unknown command', 'error')
+    else await Eho('Неизвестная команда', 'error')
 
     if (current.length > 0) {
         const newHistory = [current.join(''), ...history.slice(0, MAX_LENGTH_HiSTORY)]

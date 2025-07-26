@@ -7,7 +7,11 @@ export interface Commands {
         fn(args: string): Promise<void>,
         requireArgs: true
     },
-    clear: CommandWithoutArgs
+    clear: CommandWithoutArgs,
+    start: {
+        fn(args:string): Promise<void>,
+        requireArgs: true
+    }
 }
 
 export type CommandsInfo = {

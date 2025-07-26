@@ -6,13 +6,14 @@ const commandsInfo: CommandsInfo = {
         'Помощь по системным командам:',
         '- eho text: Выводит сообщение на экран',
         '- help [type]: Выводит подсказки по командам',
-        '- clear: Очищает поле ввода'
+        '- clear: Очищает поле ввода',
+        '- start spec [name]: Начало игры'
     ]
 }
 
 export async function Help(type: keyof CommandsInfo | '') {
     if (!Object.hasOwn(commandsInfo, type) && type !== '') {
-        await Eho('Unknown help type', 'error')
+        await Eho('Неизвестная группа команд', 'error')
         return
     }
     if (type === '') for (const e of [
