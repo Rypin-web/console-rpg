@@ -5,50 +5,55 @@ import {MAX_LENGTH_HiSTORY} from "../constants.ts";
 import {Help} from "./system/help.ts";
 import {Clear} from "./system/clear.ts";
 import {Start} from "./system/start.ts";
+import {isPlayerCommand, isSystemCommand, isValidCommand} from "../utils/isValidCommand.ts";
 
 const commands: Commands = {
-    eho: {
-        fn: Eho,
-        requireArgs: true
+    system: {
+        eho: {fn: Eho, requireArgs: true},
+        help: {fn: Help, requireArgs: true},
+        clear: {fn: Clear, requireArgs: false},
+        start: {fn: Start, requireArgs: true},
     },
-    help: {
-        fn: Help,
-        requireArgs: true
-    },
-    clear: {
-        fn: Clear,
-        requireArgs: false
-    },
-    start: {
-        fn: Start,
-        requireArgs: true
-    }
-}
-
-function isValidCommand(cmd: string): cmd is keyof Commands {
-    return cmd in commands
 }
 
 export async function parseCommand(inputStroke: string) {
+    const {current, history} = getState('inputCommands')
     if (!getState('flags').canSendCommand) {
         updateState('flags', {canSendCommand: true})
         return
     }
-
-    const parsedCommand: string = inputStroke.split(' ')[0]
-    const args = inputStroke.split(' ').splice(1, inputStroke.length).join(' ')
-    const {current, history} = getState('inputCommands')
-
     updateState('flags', {canSendCommand: false})
-    await Eho('')
-    if (isValidCommand(parsedCommand) && commands[parsedCommand].requireArgs) await commands[parsedCommand].fn(args)
-    else if ((isValidCommand(parsedCommand) && !commands[parsedCommand].requireArgs)) await commands[parsedCommand].fn()
-    else await Eho('Неизвестная команда', 'error')
 
     if (current.length > 0) {
         const newHistory = [current.join(''), ...history.slice(0, MAX_LENGTH_HiSTORY)]
         updateState('inputCommands', {current: [], history: newHistory, historyPosition: -1})
     }
+
+    const parsedGroupCommand: string = inputStroke.split(' ')[0]
+    const parsedCommand: string = inputStroke.split(' ')[1]
+    const args = inputStroke.split(' ').splice(2, inputStroke.length).join(' ')
+
+    await Eho('')
+
+    if (isValidCommand(parsedGroupCommand, commands)) {
+        if (parsedGroupCommand === 'system') {
+            const groupCmd = commands.system
+            if (isSystemCommand(parsedCommand, groupCmd)) {
+                const cmd = groupCmd[parsedCommand]
+                if (cmd.requireArgs) await cmd.fn(args)
+                else await cmd.fn()
+            } else await Eho('Неизвестная команда', 'error')
+        }
+        else if (parsedGroupCommand === 'player') {
+            const groupCmd = commands.player
+            if (isPlayerCommand(parsedCommand, groupCmd)) {
+                const cmd = groupCmd[parsedCommand]
+                if (cmd.requireArgs) await cmd.fn(args)
+                else await cmd.fn()
+            } else await Eho('Неизвестная команда', 'error')
+        }else await Eho('Неизвестная команда', 'error')
+    } else await Eho('Неизвестная команда', 'error')
+
 
     updateState('flags', {canSendCommand: true})
 }

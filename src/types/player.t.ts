@@ -1,4 +1,4 @@
-export type Player = {
+export type PlayerStats = {
     name: string | 'Путешественник',
     specialization: 'Воин' | 'Лучник',
     hp: {

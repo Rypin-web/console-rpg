@@ -8,6 +8,10 @@ const commandsInfo: CommandsInfo = {
         '- help [type]: Выводит подсказки по командам',
         '- clear: Очищает поле ввода',
         '- start spec [name]: Начало игры'
+    ],
+    player: [
+        'Помощь по командам игрока:',
+        '- info [key]: Выводит информацию об игроке'
     ]
 }
 
