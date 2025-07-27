@@ -13,7 +13,7 @@ export async function Start(args: string) {
         case "Воин":
             updateState('player', {
                 name: name ? name : 'Путешественник',
-                specialization: specialization,
+                spec: specialization,
                 hp: {
                     max: 110,
                     current: 110
@@ -24,7 +24,7 @@ export async function Start(args: string) {
                     current: 0
                 },
                 def: 3,
-                level: 1,
+                lvl: 1,
                 stats: {
                     strength: 8,
                     agility: 4,
@@ -37,7 +37,7 @@ export async function Start(args: string) {
         case "Лучник":
             updateState('player', {
                 name: name ? name : 'Путешественник',
-                specialization: specialization,
+                spec: specialization,
                 hp: {
                     max: 100,
                     current: 100
@@ -48,7 +48,7 @@ export async function Start(args: string) {
                     current: 0
                 },
                 def: 1,
-                level: 1,
+                lvl: 1,
                 stats: {
                     strength: 4,
                     agility: 8,

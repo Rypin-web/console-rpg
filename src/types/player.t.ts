@@ -1,6 +1,6 @@
 export type PlayerStats = {
     name: string | 'Путешественник',
-    specialization: 'Воин' | 'Лучник',
+    spec: 'Воин' | 'Лучник',
     hp: {
         max: number,
         current: number
@@ -11,7 +11,7 @@ export type PlayerStats = {
         current: number
     },
     def: number,
-    level: number
+    lvl: number
     stats:{
         strength: number, // здоровье, броня
         agility: number, // уклонение, криты

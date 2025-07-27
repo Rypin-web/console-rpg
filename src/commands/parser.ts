@@ -6,6 +6,7 @@ import {Help} from "./system/help.ts";
 import {Clear} from "./system/clear.ts";
 import {Start} from "./system/start.ts";
 import {isPlayerCommand, isSystemCommand, isValidCommand} from "../utils/isValidCommand.ts";
+import {Info} from "./player/info.ts";
 
 const commands: Commands = {
     system: {
@@ -14,6 +15,9 @@ const commands: Commands = {
         clear: {fn: Clear, requireArgs: false},
         start: {fn: Start, requireArgs: true},
     },
+    player: {
+        info: { fn:Info, requireArgs: true }
+    }
 }
 
 export async function parseCommand(inputStroke: string) {
