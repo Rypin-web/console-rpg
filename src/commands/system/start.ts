@@ -1,65 +1,38 @@
 import {Eho} from "./eho.ts";
 import {getState, updateState} from "../../state/state.ts";
+import {SPEC_STATS} from "../../constants.ts";
+import {isValidSpec} from "../../utils/isValidSpec.ts";
 
 export async function Start(args: string) {
     const [specialization, name] = args.split(' ')
-    if (typeof getState('player') === 'object') {
+    if (getState('player')?.name) {
         await Eho('Вы уже начали игру', 'info')
         await Eho('Невозможно создать двух персонажей', 'error')
         return
     }
 
-    switch (specialization) {
-        case "Воин":
-            updateState('player', {
-                name: name ? name : 'Путешественник',
-                spec: specialization,
-                hp: {
-                    max: 110,
-                    current: 110
-                },
-                exp: {
-                    coefficient: 1.05,
-                    needToLvlUp: 10,
-                    current: 0
-                },
-                def: 3,
-                lvl: 1,
-                stats: {
-                    strength: 8,
-                    agility: 4,
-                    luck: 3,
-                },
-                gold: 0,
-            })
-            await Eho(`Ваш персонаж ${getState('player')?.name} создан!`, 'notification')
-            break
-        case "Лучник":
-            updateState('player', {
-                name: name ? name : 'Путешественник',
-                spec: specialization,
-                hp: {
-                    max: 100,
-                    current: 100
-                },
-                exp: {
-                    coefficient: 1.05,
-                    needToLvlUp: 10,
-                    current: 0
-                },
-                def: 1,
-                lvl: 1,
-                stats: {
-                    strength: 4,
-                    agility: 8,
-                    luck: 3,
-                },
-                gold: 0,
-            })
-            await Eho(`Ваш персонаж ${getState('player')?.name} создан!`, 'notification')
-            break
-        default:
-            await Eho('Вам нужно указать специализацию (Воин, Лучник)', 'error')
-            break
+    if (isValidSpec(specialization)) {
+        const specData = SPEC_STATS[specialization]
+        updateState('player', {
+            name: name ? name : 'Путешественник',
+            spec: specialization,
+            hp: {
+                max: specData.hp,
+                current: specData.hp
+            },
+            exp: {
+                coefficient: 1.05,
+                needToLvlUp: 10,
+                current: 0
+            },
+            def: specData.def,
+            lvl: 1,
+            stats: specData.stats,
+            gold: 0,
+        })
+        await Eho(`Ваш персонаж ${getState('player')?.name} создан!`, 'notification')
+    } else  {
+        const availableSpecs = Object.keys(SPEC_STATS)
+        await Eho(`Вам нужно указать специализацию (${availableSpecs.join(', ')})`, 'error')
     }
 }

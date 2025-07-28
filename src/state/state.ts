@@ -41,5 +41,4 @@ export function updateState<T extends keyof State>(
     listeners.forEach((l) => {
         if (l[1] === key) l[0]()
     })
-    console.log(state)
 }
