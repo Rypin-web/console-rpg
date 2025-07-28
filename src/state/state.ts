@@ -13,7 +13,8 @@ const state: State = {
         historyPosition: -1
     },
     infoScreen: [],
-    player: undefined
+    player: undefined,
+    enemy: undefined
 }
 
 export function subscribeState(l: Listener[0], t: Listener[1]) {
