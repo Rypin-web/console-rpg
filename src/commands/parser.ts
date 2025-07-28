@@ -7,6 +7,7 @@ import {Clear} from "./system/clear.ts";
 import {Start} from "./system/start.ts";
 import {isPlayerCommand, isSystemCommand, isValidCommand} from "../utils/isValidCommand.ts";
 import {Info} from "./player/info.ts";
+import {FindEnemy} from "./player/findEnemy.ts";
 
 const commands: Commands = {
     system: {
@@ -16,7 +17,11 @@ const commands: Commands = {
         start: {fn: Start, requireArgs: true},
     },
     player: {
-        info: { fn:Info, requireArgs: true }
+        info: {fn: Info, requireArgs: true},
+        findEnemy: {
+            fn: FindEnemy,
+            requireArgs: false
+        }
     }
 }
 
@@ -47,15 +52,14 @@ export async function parseCommand(inputStroke: string) {
                 if (cmd.requireArgs) await cmd.fn(args)
                 else await cmd.fn()
             } else await Eho('Неизвестная команда', 'error')
-        }
-        else if (parsedGroupCommand === 'player') {
+        } else if (parsedGroupCommand === 'player') {
             const groupCmd = commands.player
             if (isPlayerCommand(parsedCommand, groupCmd)) {
                 const cmd = groupCmd[parsedCommand]
                 if (cmd.requireArgs) await cmd.fn(args)
                 else await cmd.fn()
             } else await Eho('Неизвестная команда', 'error')
-        }else await Eho('Неизвестная команда', 'error')
+        } else await Eho('Неизвестная команда', 'error')
     } else await Eho('Неизвестная команда', 'error')
 
 

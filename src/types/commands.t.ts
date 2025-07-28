@@ -23,7 +23,8 @@ export type Player = {
     info: {
         fn(arg?: string): Promise<void>,
         requireArgs: true
-    }
+    },
+    findEnemy:CommandWithoutArgs
 }
 
 export type CommandsInfo = {
