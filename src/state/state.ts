@@ -5,7 +5,8 @@ const listeners: Listener[] = []
 
 const state: State = {
     flags: {
-        canSendCommand: true
+        canSendCommand: true,
+        playerInCombat: false
     },
     inputCommands: {
         current: [],
