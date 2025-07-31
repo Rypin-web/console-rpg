@@ -1,30 +1,16 @@
 import {Eho} from "./eho.ts";
+import {COMMANDS_INFO} from "../../constants.ts";
 import type {CommandsInfo} from "../../types/commands.t.ts";
 
-const commandsInfo: CommandsInfo = {
-    system: [
-        'Помощь по системным командам:',
-        '- eho text: Выводит сообщение на экран',
-        '- help [type]: Выводит подсказки по командам',
-        '- clear: Очищает поле ввода',
-        '- start spec [name]: Начало игры'
-    ],
-    player: [
-        'Помощь по командам игрока:',
-        '- info [key]: Выводит информацию об игроке'
-    ]
-}
-
 export async function Help(type: keyof CommandsInfo | '') {
-    if (!Object.hasOwn(commandsInfo, type) && type !== '') {
-        await Eho('Неизвестная группа команд', 'error')
+    if (!Object.hasOwn(COMMANDS_INFO, type) && type !== '') {
+        await Eho('Неизвестная группа команд', 'error', [200, 200])
         return
     }
     if (type === '') for (const e of [
         'Выберите группу команд:',
         '- Cистемные: help system',
         '- Игрока: help player',
-        '- Окружения: help world'
-    ]) await Eho(e, 'info')
-    else for (const e of commandsInfo[type]) await Eho(e, 'info')
+    ]) await Eho(e, 'info', [200, 20])
+    else for (const e of COMMANDS_INFO[type]) await Eho(e, 'info', [200, 20])
 }
