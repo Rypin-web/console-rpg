@@ -5,7 +5,7 @@ export type Commands = {
 
 export type System = {
     eho: {
-        fn(args: string, type?: 'error' | 'info' | 'notification' | 'combat' | 'default' | 'success'): Promise<void>,
+        fn(args: string, type?: 'error' | 'info' | 'notification' | 'combat' | 'default' | 'success', del?:[number, number]): Promise<void>,
         requireArgs: true
     },
     help: {

@@ -4,10 +4,10 @@ import {Eho} from "../system/eho.ts";
 import {ENEMIES} from "../../constants.ts";
 import {random} from "../../utils/random.ts";
 
-export async function FindEnemy ():Promise<void> {
-    try{
+export async function FindEnemy(): Promise<void> {
+    try {
         await playerIsCreated()
-        if(getState('flags').playerInCombat){
+        if (getState('flags').playerInCombat) {
             await Eho(`Вы уже нашли врага: ${getState('enemy')?.name}`, 'info')
             return
         }
@@ -17,6 +17,7 @@ export async function FindEnemy ():Promise<void> {
         updateState('enemy', enemy)
         updateState('flags', {playerInCombat: true})
 
-        await Eho(`Враг (${enemy.name}) найден!`, 'notification')
-    } catch (e) { }
+        await Eho(`Враг (${enemy.name}) найден!`, 'notification', [500, 500])
+    } catch (e) {
+    }
 }
