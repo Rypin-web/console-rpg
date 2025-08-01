@@ -5,8 +5,8 @@ import {isValidSpec} from "../../utils/isValidSpec.ts";
 import {checkFlags} from "../../utils/checkFlags.ts";
 
 export async function Start(args: string) {
+    await checkFlags('playerIsCreated', true, [['Вы уже начали игру', 'info'], ['Невозможно создать двух персонажей', 'error']])
     const [specialization, name] = args.split(' ')
-    await checkFlags('playerIsCreated', [['Вы уже начали игру', 'info'], ['Невозможно создать двух персонажей', 'error']])
 
     if (isValidSpec(specialization)) {
         const specData = SPEC_STATS[specialization]

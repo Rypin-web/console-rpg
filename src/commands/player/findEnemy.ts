@@ -6,8 +6,8 @@ import {checkFlags} from "../../utils/checkFlags.ts";
 
 export async function FindEnemy(): Promise<void> {
     try {
-        await checkFlags('playerIsCreated', [['Персонаж еще не создан. Команда невозможна', 'error']])
-        await checkFlags('playerInCombat', [[`Вы уже нашли врага: ${getState('enemy')?.name}`, 'info']])
+        await checkFlags('playerIsCreated', false, [['Персонаж еще не создан. Команда невозможна', 'error']])
+        await checkFlags('playerInCombat', true, [[`Вы уже нашли врага: ${getState('enemy')?.name}`, 'info']])
         await Eho('Ищем врага...', 'info')
 
         const enemy = ENEMIES[random(ENEMIES.length)]

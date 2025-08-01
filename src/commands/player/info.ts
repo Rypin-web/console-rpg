@@ -16,7 +16,7 @@ const infoLabels = {
 
 export async function Info(key?: keyof PlayerStats | '') {
     try {
-        await checkFlags('playerIsCreated', [['Персонаж еще не создан. Команда невозможна', 'error']])
+        await checkFlags('playerIsCreated', false, [['Персонаж еще не создан. Команда невозможна', 'error']])
         const p = getState('player')!
         if (typeof key !== 'undefined' && key !== '') {
             if (Object.hasOwn(infoLabels, key)) {
