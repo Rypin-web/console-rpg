@@ -2,14 +2,11 @@ import {Eho} from "./eho.ts";
 import {getState, updateState} from "../../state/state.ts";
 import {SPEC_STATS} from "../../constants.ts";
 import {isValidSpec} from "../../utils/isValidSpec.ts";
+import {checkFlags} from "../../utils/checkFlags.ts";
 
 export async function Start(args: string) {
     const [specialization, name] = args.split(' ')
-    if (getState('player')?.name) {
-        await Eho('Вы уже начали игру', 'info')
-        await Eho('Невозможно создать двух персонажей', 'error')
-        return
-    }
+    await checkFlags('playerIsCreated', [['Вы уже начали игру', 'info'], ['Невозможно создать двух персонажей', 'error']])
 
     if (isValidSpec(specialization)) {
         const specData = SPEC_STATS[specialization]
@@ -31,7 +28,8 @@ export async function Start(args: string) {
             gold: 0,
         })
         await Eho(`Ваш персонаж ${getState('player')?.name} создан!`, 'notification')
-    } else  {
+        updateState('flags', {playerIsCreated: true})
+    } else {
         const availableSpecs = Object.keys(SPEC_STATS)
         await Eho(`Вам нужно указать специализацию (${availableSpecs.join(', ')})`, 'error')
     }

@@ -1,7 +1,7 @@
 import {Eho} from "../system/eho.ts";
 import type {PlayerStats} from "../../types/player.t.ts";
-import {playerIsCreated} from "../../utils/playerIsCreated.ts";
 import {getState} from "../../state/state.ts";
+import {checkFlags} from "../../utils/checkFlags.ts";
 
 const infoLabels = {
     name: 'Имя (name) : ',
@@ -16,7 +16,7 @@ const infoLabels = {
 
 export async function Info(key?: keyof PlayerStats | '') {
     try {
-        await playerIsCreated()
+        await checkFlags('playerIsCreated', [['Персонаж еще не создан. Команда невозможна', 'error']])
         const p = getState('player')!
         if (typeof key !== 'undefined' && key !== '') {
             if (Object.hasOwn(infoLabels, key)) {
