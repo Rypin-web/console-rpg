@@ -12,11 +12,11 @@ export type System = {
         fn(args: string): Promise<void>,
         requireArgs: true
     },
-    clear: CommandWithoutArgs,
     start: {
         fn(args: string): Promise<void>,
         requireArgs: true
     },
+    clear: CommandWithoutArgs,
 }
 
 export type Player = {
@@ -24,7 +24,8 @@ export type Player = {
         fn(arg?: string): Promise<void>,
         requireArgs: true
     },
-    findEnemy:CommandWithoutArgs
+    findEnemy:CommandWithoutArgs,
+    scan: CommandWithoutArgs
 }
 
 export type CommandsInfo = {

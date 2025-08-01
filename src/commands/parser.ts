@@ -8,6 +8,7 @@ import {Start} from "./system/start.ts";
 import {isPlayerCommand, isSystemCommand, isValidCommand} from "../utils/isValidCommand.ts";
 import {Info} from "./player/info.ts";
 import {FindEnemy} from "./player/findEnemy.ts";
+import {Scan} from "./player/scan.ts";
 
 const commands: Commands = {
     system: {
@@ -18,10 +19,8 @@ const commands: Commands = {
     },
     player: {
         info: {fn: Info, requireArgs: true},
-        findEnemy: {
-            fn: FindEnemy,
-            requireArgs: false
-        }
+        findEnemy: {fn: FindEnemy, requireArgs: false},
+        scan: {fn: Scan, requireArgs: false}
     }
 }
 
