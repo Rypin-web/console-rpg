@@ -28,13 +28,10 @@ const commands: Commands = {
 
 export async function parseCommand(inputStroke: string) {
     const {current, history} = getState('inputCommands')
-    if (!getState('flags').canSendCommand) {
-        updateState('flags', {canSendCommand: true})
-        return
-    }
+    if (!getState('flags').canSendCommand) return
     updateState('flags', {canSendCommand: false})
 
-    if (current.length > 0) {
+    if (current.length > 0 && !history.includes(current.join(''))) {
         const newHistory = [current.join(''), ...history.slice(0, MAX_LENGTH_HiSTORY)]
         updateState('inputCommands', {current: [], history: newHistory, historyPosition: -1})
     }
