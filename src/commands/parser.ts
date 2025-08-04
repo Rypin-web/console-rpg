@@ -10,6 +10,7 @@ import {Info} from "./player/info.ts";
 import {FindEnemy} from "./player/findEnemy.ts";
 import {Scan} from "./player/scan.ts";
 import {Attack} from "./player/attack.ts";
+import {checkFlags} from "../utils/checkFlags.ts";
 
 const commands: Commands = {
     system: {
@@ -27,39 +28,42 @@ const commands: Commands = {
 }
 
 export async function parseCommand(inputStroke: string) {
-    const {current, history} = getState('inputCommands')
-    if (!getState('flags').canSendCommand) return
-    updateState('flags', {canSendCommand: false})
+    try {
+        const {current, history} = getState('inputCommands')
+        await checkFlags('canSendCommand', false)
+        updateState('flags', {canSendCommand: false})
 
-    if (current.length > 0 && !history.includes(current.join(''))) {
-        const newHistory = [current.join(''), ...history.slice(0, MAX_LENGTH_HiSTORY)]
-        updateState('inputCommands', {current: [], history: newHistory, historyPosition: -1})
-    }
+        if (current.length > 0 && !history.includes(current.join(''))) {
+            const newHistory = [current.join(''), ...history.slice(0, MAX_LENGTH_HiSTORY)]
+            updateState('inputCommands', {current: [], history: newHistory, historyPosition: -1})
+        } else updateState('inputCommands', {current: [], history, historyPosition: -1})
 
-    const parsedGroupCommand: string = inputStroke.split(' ')[0]
-    const parsedCommand: string = inputStroke.split(' ')[1]
-    const args = inputStroke.split(' ').splice(2, inputStroke.length).join(' ')
+        const parsedGroupCommand: string = inputStroke.split(' ')[0]
+        const parsedCommand: string = inputStroke.split(' ')[1]
+        const args = inputStroke.split(' ').splice(2, inputStroke.length).join(' ')
 
-    await Eho('')
+        await Eho('')
 
-    if (isValidCommand(parsedGroupCommand, commands)) {
-        if (parsedGroupCommand === 'system') {
-            const groupCmd = commands.system
-            if (isSystemCommand(parsedCommand, groupCmd)) {
-                const cmd = groupCmd[parsedCommand]
-                if (cmd.requireArgs) await cmd.fn(args)
-                else await cmd.fn()
-            } else await Eho('Неизвестная команда', 'error')
-        } else if (parsedGroupCommand === 'player') {
-            const groupCmd = commands.player
-            if (isPlayerCommand(parsedCommand, groupCmd)) {
-                const cmd = groupCmd[parsedCommand]
-                if (cmd.requireArgs) await cmd.fn(args)
-                else await cmd.fn()
+        if (isValidCommand(parsedGroupCommand, commands)) {
+            if (parsedGroupCommand === 'system') {
+                const groupCmd = commands.system
+                if (isSystemCommand(parsedCommand, groupCmd)) {
+                    const cmd = groupCmd[parsedCommand]
+                    if (cmd.requireArgs) await cmd.fn(args)
+                    else await cmd.fn()
+                } else await Eho('Неизвестная команда', 'error')
+            } else if (parsedGroupCommand === 'player') {
+                const groupCmd = commands.player
+                if (isPlayerCommand(parsedCommand, groupCmd)) {
+                    const cmd = groupCmd[parsedCommand]
+                    if (cmd.requireArgs) await cmd.fn(args)
+                    else await cmd.fn()
+                } else await Eho('Неизвестная команда', 'error')
             } else await Eho('Неизвестная команда', 'error')
         } else await Eho('Неизвестная команда', 'error')
-    } else await Eho('Неизвестная команда', 'error')
 
 
-    updateState('flags', {canSendCommand: true})
+        updateState('flags', {canSendCommand: true})
+    } catch (e) {
+    }
 }
