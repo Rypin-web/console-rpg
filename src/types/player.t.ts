@@ -14,7 +14,7 @@ export type PlayerStats = {
     lvl: number
     stats:{
         strength: number, // здоровье, броня
-        agility: number, // уклонение, криты
+        agility: number, // уклонение, урон
         luck: number, // дроп предметов, золота, х2 опыт
     },
     gold: number,

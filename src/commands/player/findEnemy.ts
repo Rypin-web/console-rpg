@@ -11,7 +11,7 @@ export async function FindEnemy(): Promise<void> {
         await Eho('Ищем врага...', 'info')
 
         const enemy = ENEMIES[random(ENEMIES.length)]
-        updateState('enemy', enemy)
+        updateState('enemy', {...enemy, hp: {current: enemy.hp.max - random(10), max: enemy.hp.max}})
         updateState('flags', {playerInCombat: true})
 
         await Eho(`Враг (${enemy.name}) найден!`, 'notification', [500, 500])

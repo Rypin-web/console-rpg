@@ -7,7 +7,7 @@ export async function checkFlags (
     b:boolean,
     messages: [string, 'error' | 'info' | 'notification' | 'combat' | 'default'][]):Promise<void> {
     if(getState('flags')[flag] === b) {
-        for(let e of messages) await Eho(e[0], e[1])
+        for(let e of messages) await Eho(...e)
         throw Error()
     }
 }
