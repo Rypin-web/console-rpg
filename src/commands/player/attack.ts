@@ -1,6 +1,7 @@
 import {checkFlags} from "../../utils/checkFlags.ts";
 import {getState, updateState} from "../../state/state.ts";
 import {Eho} from "../system/eho.ts";
+import {getExperience} from "./getExperience.ts";
 
 export async function Attack(): Promise<void> {
     await checkFlags('playerIsCreated', false, [['Персонаж еще не создан. Команда невозможна', 'error']])
@@ -17,20 +18,21 @@ export async function Attack(): Promise<void> {
     enemy = getState('enemy')!
     await Eho(`(${enemy.name}) получил (${playerDamage}) урона!`, 'combat')
 
-    if (enemy.hp.current <= 0) {
+    if (enemy.hp.current <= 0) { // Враг умер
         await Eho(`(${enemy.name}) повержен!`, 'combat', [300, 50])
+        await getExperience(enemy.exp * 10)
         updateState('enemy', undefined)
         updateState('flags', {playerInCombat: false})
         return
-    } else {
+    } else { // Враг выжил
         await Eho(`У (${enemy.name}) осталось (${enemy.hp.current}) здоровья`, 'info')
         await Eho(`(${enemy.name}) атакует вас!`, 'combat', [200, 50])
         const playerObtainedDamage = enemy.att - player.def < 0 ? 0 : enemy.att - player.def
         updateState('player', {hp: {current: player.hp.current - playerObtainedDamage, max: player.hp.max}})
         player = getState('player')!
-        await Eho(`Вы поулчили (${playerObtainedDamage}) урона`, 'combat', [200,50])
+        await Eho(`Вы поулчили (${playerObtainedDamage}) урона`, 'combat', [200, 50])
     }
-    if(player.hp.current <= 0) {
+    if (player.hp.current <= 0) { // Игрок умер
         await Eho('Вы погибли', 'notification', [300, 50])
         updateState('player', undefined)
         updateState('flags', {playerIsCreated: false, playerInCombat: false})
