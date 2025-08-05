@@ -36,6 +36,7 @@ export function updateState<T extends keyof State>(
     key: T,
     values: State[T] extends any[] ? State[T] : Partial<State[T]>
 ): void {
+    console.log(state)
     if (!Object.hasOwn(state, key)) throw new Error(`Unknown state key: ${key}`)
 
     if (Array.isArray(state[key])) state[key] = values as State[T]
