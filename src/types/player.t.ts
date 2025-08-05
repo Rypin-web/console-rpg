@@ -12,10 +12,11 @@ export type PlayerStats = {
     },
     def: number,
     lvl: number
-    stats:{
+    stats: {
         strength: number, // здоровье, броня
         agility: number, // уклонение, урон
         luck: number, // дроп предметов, золота, х2 опыт
     },
+    points: number
     gold: number,
 }

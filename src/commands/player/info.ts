@@ -11,6 +11,7 @@ const infoLabels = {
     lvl: 'Уровень (lvl) : ',
     def: 'Защита (def) : ',
     stats: ['Характеристики (stats) :', '- Сила : ', '- Ловкость : ', '- Удача : '],
+    points: 'Очки характеристик (points): ',
     gold: 'Золото (gold) : ',
 }
 
@@ -48,6 +49,7 @@ export async function Info(key?: keyof PlayerStats | '') {
         await Eho(infoLabels.stats[1] + p.stats.strength, 'info')
         await Eho(infoLabels.stats[2] + p.stats.agility, 'info')
         await Eho(infoLabels.stats[3] + p.stats.luck, 'info')
+        await Eho(infoLabels.points + p.points, 'info')
         await Eho(infoLabels.gold + p.gold, 'info')
     } catch (e) {
 

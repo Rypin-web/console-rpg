@@ -25,6 +25,7 @@ export async function Start(args: string) {
             def: specData.def,
             lvl: 1,
             stats: specData.stats,
+            points: 0,
             gold: 0,
         })
         await Eho(`Ваш персонаж ${getState('player')?.name} создан!`, 'notification')
