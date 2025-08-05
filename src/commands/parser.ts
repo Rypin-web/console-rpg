@@ -11,6 +11,7 @@ import {FindEnemy} from "./player/findEnemy.ts";
 import {Scan} from "./player/scan.ts";
 import {Attack} from "./player/attack.ts";
 import {checkFlags} from "../utils/checkFlags.ts";
+import {SetPoint} from "./player/setPoint.ts";
 
 const commands: Commands = {
     system: {
@@ -23,7 +24,8 @@ const commands: Commands = {
         info: {fn: Info, requireArgs: true},
         findEnemy: {fn: FindEnemy, requireArgs: false},
         scan: {fn: Scan, requireArgs: false},
-        attack: {fn: Attack, requireArgs: false}
+        attack: {fn: Attack, requireArgs: false},
+        setPoint: {fn: SetPoint, requireArgs: true}
     }
 }
 

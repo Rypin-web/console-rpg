@@ -16,7 +16,6 @@ export async function getExperience(gotExp: number) {
                 coefficient: player.exp.coefficient
             },
             points: player.points + 1
-            //TODO: Добавить очки навыков
         })
         await Info('lvl')
         await Info('exp')

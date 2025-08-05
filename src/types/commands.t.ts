@@ -26,7 +26,8 @@ export type Player = {
     },
     findEnemy:CommandWithoutArgs,
     scan: CommandWithoutArgs,
-    attack: CommandWithoutArgs
+    attack: CommandWithoutArgs,
+    setPoint: { fn(arg:string):Promise<void>, requireArgs: true }
 }
 
 export type CommandsInfo = {
