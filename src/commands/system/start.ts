@@ -18,7 +18,7 @@ export async function Start(args: string) {
                 current: specData.hp
             },
             exp: {
-                coefficient: 1.05,
+                coefficient: 0.05,
                 needToLvlUp: 10,
                 current: 0
             },

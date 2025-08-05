@@ -2,6 +2,7 @@ import {checkFlags} from "../../utils/checkFlags.ts";
 import {Eho} from "../system/eho.ts";
 import {getState, updateState} from "../../state/state.ts";
 import {Info} from "./info.ts";
+import {updateStats} from "./updateStats.ts";
 
 export async function SetPoint(point: 'strength' | 'agility' | 'luck') {
     try {
@@ -27,6 +28,7 @@ export async function SetPoint(point: 'strength' | 'agility' | 'luck') {
                 points: player.points - 1
             })
             await Info('stats')
+            updateStats()
         } else {
             await Eho('Выберите одну из трех характеристик: ', 'notification', [300, 50])
             await Eho('- Сила (strength) ', 'notification', [50, 50])

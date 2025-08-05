@@ -10,7 +10,7 @@ export async function Attack(): Promise<void> {
 
         let player = getState('player')!
         let enemy = getState('enemy')!
-        const playerDamage = player.stats.strength + player.stats.agility * 1.5
+        const playerDamage =  Math.round(player.stats.agility * 1.8) + Math.floor(player.stats.agility / 4)
 
         await Eho('Вы атакуете врага', 'combat', [200, 50])
 

@@ -12,7 +12,7 @@ export async function getExperience(gotExp: number) {
             lvl: player.lvl + 1,
             exp: {
                 current: obtainedExpAfterLvlUp,
-                needToLvlUp: Math.round(player.exp.needToLvlUp * 2 * player.exp.coefficient),
+                needToLvlUp: player.exp.needToLvlUp + Math.round(Math.pow(player.exp.needToLvlUp, 1.75) * player.exp.coefficient),
                 coefficient: player.exp.coefficient
             },
             points: player.points + 1
