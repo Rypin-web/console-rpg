@@ -4,6 +4,8 @@ import {Info} from "./info.ts";
 
 export async function getExperience(gotExp: number) {
     const player = getState('player')!
+
+    await Eho(' ', 'default' ,[10,10])
     if (player.exp.needToLvlUp !== null && player.exp.current + gotExp >= player.exp.needToLvlUp) {
         // Повешение уровня
         await Eho('Вы повысили уровень!', 'info', [300, 100])
@@ -17,9 +19,7 @@ export async function getExperience(gotExp: number) {
             },
             points: player.points + 1
         })
-        await Info('lvl')
-        await Info('exp')
-        await getExperience(0)
+
     } else {
         updateState('player', {
             exp: {
@@ -29,4 +29,7 @@ export async function getExperience(gotExp: number) {
             }
         })
     }
+    await Info('lvl')
+    await Info('exp')
+    if (player.exp.needToLvlUp !== null && player.exp.current + gotExp >= player.exp.needToLvlUp) await getExperience(0)
 }

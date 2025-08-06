@@ -2,6 +2,7 @@ import {checkFlags} from "../../utils/checkFlags.ts";
 import {getState, updateState} from "../../state/state.ts";
 import {Eho} from "../system/eho.ts";
 import {getExperience} from "./getExperience.ts";
+import {Info} from "./info.ts";
 
 export async function Attack(): Promise<void> {
     try {
@@ -22,6 +23,12 @@ export async function Attack(): Promise<void> {
         if (enemy.hp.current <= 0) { // Враг умер
             await Eho(`(${enemy.name}) повержен!`, 'combat', [300, 50])
             await getExperience(enemy.exp * 10)
+
+            await Eho(' ', 'default', [10, 10])
+            await Eho(`Вы получили (${enemy.gold}) золота`, 'info')
+            updateState('player', {gold: player.gold + enemy.gold})
+            await Info('gold')
+
             updateState('enemy', undefined)
             updateState('constants', {killedEnemies: getState('constants').killedEnemies + 1
         })
