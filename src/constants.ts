@@ -41,7 +41,8 @@ export const ENEMIES: Enemy[] = [
             max: 50,
             current: 0
         },
-        att: 3,
+        att: 3
+        ,
         def: 3,
         exp: 5,
         gold: 2

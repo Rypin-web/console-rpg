@@ -7,6 +7,9 @@ export type State = {
     inputCommands: CommandsState,
     infoScreen: [string, string | undefined][],
     flags: Flags,
+    constants: {
+        killedEnemies: number,
+    }
     player?: PlayerStats,
     enemy?: Enemy
 }

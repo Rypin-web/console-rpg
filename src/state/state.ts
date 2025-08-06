@@ -15,6 +15,9 @@ const state: State = {
         historyPosition: -1
     },
     infoScreen: [],
+    constants: {
+        killedEnemies: 0,
+    },
     player: undefined,
     enemy: undefined
 }

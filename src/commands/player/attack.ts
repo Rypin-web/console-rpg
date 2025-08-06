@@ -23,6 +23,8 @@ export async function Attack(): Promise<void> {
             await Eho(`(${enemy.name}) повержен!`, 'combat', [300, 50])
             await getExperience(enemy.exp * 10)
             updateState('enemy', undefined)
+            updateState('constants', {killedEnemies: getState('constants').killedEnemies + 1
+        })
             updateState('flags', {playerInCombat: false})
             return
         } else { // Враг выжил
@@ -36,6 +38,7 @@ export async function Attack(): Promise<void> {
         if (player.hp.current <= 0) { // Игрок умер
             await Eho('Вы погибли', 'notification', [300, 50])
             updateState('player', undefined)
+            updateState('constants', {killedEnemies: 0})
             updateState('flags', {playerIsCreated: false, playerInCombat: false})
         }
     } catch (e) {
