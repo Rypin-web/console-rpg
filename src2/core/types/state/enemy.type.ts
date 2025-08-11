@@ -1,4 +1,4 @@
-export type Enemy = {
+export type TEnemy = {
     name: string
     hp:{
         max: number
