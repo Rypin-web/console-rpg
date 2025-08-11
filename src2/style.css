@@ -1,0 +1,59 @@
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #000;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+body {
+  margin: 0;
+  /*overflow: hidden;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 10px;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+.input:after{
+  content: '';
+  display: inline-block;
+  width: 7px;
+  height: 14px;
+  background: aliceblue;
+  animation: blink linear infinite 500ms;
+}
+
+.info{
+  overflow: auto;
+}
+
+.message-error{ color: darkred; }
+.message-info{ color: aqua; }
+.message-notification{ color: gold; }
+.message-combat{ color: salmon; }
+.message-success{ color: mediumspringgreen; }
+
+p{
+  margin: 1px 0;
+  min-height: 24px;
+}
+
+@keyframes blink {
+  0%,49.999% {
+    background: black;
+  }
+  50%, 100%{
+    background: aliceblue;
+  }
+}

@@ -1,5 +1,6 @@
+//@ts-ignore
+import './style.css'
 import {setupInput} from "./core/cli/input";
-
 
 window.onload = async () => {
     const app = document.querySelector<HTMLDivElement>('#app')

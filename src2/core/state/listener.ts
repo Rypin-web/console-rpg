@@ -1,6 +1,8 @@
-export const listeners:[()=>void, string][] = []
+import type {TState} from "../types/state/state.type";
 
-export function subscribeState(l:()=>void, t:string) {
+export const listeners:[()=>void, keyof TState][] = []
+
+export function subscribeState(l:()=>void, t: keyof TState) {
     listeners.push([l, t])
     return () => {
         const index = listeners.findIndex(([fn, key]) => (fn === l && key === t))
