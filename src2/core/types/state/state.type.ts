@@ -6,7 +6,7 @@ import type {TEnemy} from "./enemy.type";
 export type TState = {
     flags: TFlags,
     cli:{
-        input: symbol[],
+        input: string[],
         output: string[],
     },
     history: {

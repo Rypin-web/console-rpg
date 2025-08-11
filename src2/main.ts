@@ -1,3 +1,4 @@
+import {setupInput} from "./core/cli/input";
 
 
 window.onload = async () => {
@@ -8,6 +9,6 @@ window.onload = async () => {
       <div class='info' id='output'></div>
       <div class='input' id='input'></div>
     `
-
+    setupInput(document.querySelector<HTMLDivElement>('#input')!)
     console.log('Program is running and work fine!')
 }
