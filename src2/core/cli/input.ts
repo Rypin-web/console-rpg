@@ -6,7 +6,7 @@ export function setupInput (root: HTMLDivElement) {
     const updateUi = () => {
         root.textContent = getState('cli').input.join('')
     }
-    subscribeState(updateUi, 'cli')
+    subscribeState(updateUi, 'input')
 
     document.addEventListener('keydown', (ev: KeyboardEvent) => {
         const cli = getState('cli')
