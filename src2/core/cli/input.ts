@@ -13,6 +13,7 @@ export function setupInput (root: HTMLDivElement) {
         const cli = getState('cli')
 
         if (['Key', 'Spa', 'Dig'].includes(ev.code.slice(0, 3))) {
+            if(ev.code === 'Space' && cli.input[cli.input.length - 1] === ' ') return
             if(cli.input.length > coreConstants.MAX_LENGTH_CLI_INPUT) return
             updateState('cli', {
                 input: [...cli.input, ev.key]
