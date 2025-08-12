@@ -1,6 +1,4 @@
-import {getState} from "../state/getState";
-import {subscribeState} from "../state/listener";
-import {updateState} from "../state/updateState";
+import {getState, subscribeState, updateState} from "../state";
 
 export function setupInput (root: HTMLDivElement) {
     const updateUi = () => {

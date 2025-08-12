@@ -1,0 +1,1 @@
+export {setupInput} from './input'
