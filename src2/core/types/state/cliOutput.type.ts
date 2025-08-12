@@ -1,0 +1,1 @@
+export type TCliOutput = [string, 'error' | 'info' | 'notification' | 'combat' | 'default']
