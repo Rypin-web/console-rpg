@@ -1,7 +1,7 @@
 import type {TGroupCommands, TParsedCommand, TValidatorResult} from "../types/parser.type";
 import {commands, getCommand} from "./registry";
 
-export function validator (parsed: TParsedCommand):TValidatorResult {
+export function validateCommand (parsed: TParsedCommand):TValidatorResult {
     const {group, command} = parsed
 
     if(!(group in commands)) return {
