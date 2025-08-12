@@ -1,12 +1,8 @@
-type TCommandFlags = {
-    requireArgs: boolean,
-}
-
 export type TCommandHandler = (args: string) => Promise<void> | void
 
 export type TCommand = {
     handler: TCommandHandler,
-    flags: TCommandFlags
+    requireArgs: boolean
 }
 
 export type TGroupCommands = 'system' | 'player' | 'shop'
@@ -16,7 +12,7 @@ export type TCommandRegister = (
     group: TGroupCommands,
     command: string,
     handler: TCommandHandler,
-    flags: Partial<TCommandFlags>
+    requireArgs: boolean
 ) => void
 
 export type TParsedCommand = {
