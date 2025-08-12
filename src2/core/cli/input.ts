@@ -1,5 +1,6 @@
 import {getState, subscribeState, updateState} from "../state";
 import {parse} from "../parser";
+import {coreConstants} from "../constants/core";
 
 export function setupInput (root: HTMLDivElement) {
     const updateUi = () => {
@@ -12,9 +13,7 @@ export function setupInput (root: HTMLDivElement) {
         const cli = getState('cli')
 
         if (['Key', 'Spa', 'Dig'].includes(ev.code.slice(0, 3))) {
-            //TODO: Вынести в константу
-            //@ts-expect-error
-            if(cli.input.length > 100) return
+            if(cli.input.length > coreConstants.MAX_LENGTH_CLI_INPUT) return
             updateState('cli', {
                 input: [...cli.input, ev.key]
             })
