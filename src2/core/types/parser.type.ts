@@ -1,4 +1,4 @@
-export type TCommandHandler = (args: string) => Promise<void> | void
+export type TCommandHandler = (args?: string) => Promise<void> | void
 
 export type TCommand = {
     handler: TCommandHandler,
