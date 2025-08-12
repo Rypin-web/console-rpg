@@ -1,6 +1,9 @@
 //@ts-ignore
 import './style.css'
 import {setupInput} from "./core/cli";
+import {setupOutput} from "./core/cli/output";
+import {registryCommand} from "./core/parser";
+import {hello} from "./hello";
 
 window.onload = async () => {
     const app = document.querySelector<HTMLDivElement>('#app')
@@ -11,5 +14,8 @@ window.onload = async () => {
       <div class='input' id='input'></div>
     `
     setupInput(document.querySelector<HTMLDivElement>('#input')!)
+    setupOutput(document.querySelector<HTMLDivElement>('#output')!)
+
+    registryCommand('system', 'hello', hello, true)
     console.log('Program is running and work fine!')
 }
