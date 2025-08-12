@@ -1,6 +1,7 @@
 import {getState, subscribeState, updateState} from "../state";
 import {parse} from "../parser";
 import {coreConstants} from "../constants/core";
+import {moveCommand} from "../history";
 
 export function setupInput (root: HTMLDivElement) {
     const updateUi = () => {
@@ -24,17 +25,15 @@ export function setupInput (root: HTMLDivElement) {
                 input: cli.input.slice(0, -1)
             })
         }
-        //Парсер надо
         if(ev.code === 'Enter') await parse(cli.input.join(''))
 
-        //Историю нужно
         if(ev.code === 'ArrowUp') {
             ev.preventDefault()
-            console.log('История вверх')
+            moveCommand(true)
         }
         if(ev.code === 'ArrowDown') {
             ev.preventDefault()
-            console.log('История вниз')
+            moveCommand(false)
         }
     })
 }
