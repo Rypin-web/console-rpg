@@ -1,13 +1,10 @@
 //@ts-ignore
 import './style.css'
-import {setupInput} from "./core/cli";
-import {setupOutput} from "./core/cli/output";
-import {registryCommand} from "./core/parser";
-import {hello} from "./hello";
+import {setupInput, setupOutput, write} from "./core/cli";
 
 window.onload = async () => {
     const app = document.querySelector<HTMLDivElement>('#app')
-    if(!app) throw new Error('Root element #app not found')
+    if (!app) throw new Error('Root element #app not found')
 
     app.innerHTML = `
       <div class='info' id='output'></div>
@@ -16,6 +13,6 @@ window.onload = async () => {
     setupInput(document.querySelector<HTMLDivElement>('#input')!)
     setupOutput(document.querySelector<HTMLDivElement>('#output')!)
 
-    registryCommand('system', 'hello', hello, true)
+    await write('Все работает', 'notification')
     console.log('Program is running and work fine!')
 }

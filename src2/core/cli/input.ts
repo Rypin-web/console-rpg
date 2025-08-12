@@ -5,7 +5,6 @@ import {moveCommand} from "../history";
 
 export function setupInput (root: HTMLDivElement) {
     const updateUi = () => {
-        console.log('update cli')
         root.textContent = getState('cli').input.join('')
     }
     subscribeState(updateUi, 'input')

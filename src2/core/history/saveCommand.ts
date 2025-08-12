@@ -3,6 +3,7 @@ import {coreConstants} from "../constants/core";
 
 export function saveCommand (input: string) {
     const history = getState('history')
+    updateState('history', {position: -1})
     if(history.stack.includes(input)){
         updateState('history', {
             stack: [...history.stack.filter((v)=>{
