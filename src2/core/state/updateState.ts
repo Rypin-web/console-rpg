@@ -10,7 +10,7 @@ export function updateState<T extends keyof TState> (
     console.log(getState('cli'))
     state[key] = {...state[key], ...values}
     listeners.forEach((l) => {
-        if (l[1] === key) l[0]()
+        if (Object.keys(values).includes(l[1])) l[0]()
     })
 }
 

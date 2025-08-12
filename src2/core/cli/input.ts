@@ -1,12 +1,14 @@
 import {getState, subscribeState, updateState} from "../state";
+import {parse} from "../parser";
 
 export function setupInput (root: HTMLDivElement) {
     const updateUi = () => {
+        console.log('update cli')
         root.textContent = getState('cli').input.join('')
     }
     subscribeState(updateUi, 'input')
 
-    document.addEventListener('keydown', (ev: KeyboardEvent) => {
+    document.addEventListener('keydown', async (ev: KeyboardEvent) => {
         const cli = getState('cli')
 
         if (['Key', 'Spa', 'Dig'].includes(ev.code.slice(0, 3))) {
@@ -23,7 +25,7 @@ export function setupInput (root: HTMLDivElement) {
             })
         }
         //Парсер надо
-        if(ev.code === 'Enter') console.log('Enter')
+        if(ev.code === 'Enter') await parse(cli.input.join(''))
 
         //Историю нужно
         if(ev.code === 'ArrowUp') {

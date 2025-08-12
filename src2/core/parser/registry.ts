@@ -5,16 +5,7 @@ import type {
 } from "../types/parser.type";
 
 export const commands: TCommandRegistry = {
-    system: {
-        help:{
-            handler: async (args: string) => {
-                console.log(args)
-            },
-            flags:{
-                requireArgs:true
-            }
-        }
-    },
+    system: {},
     player: {},
     shop: {}
 }
@@ -23,14 +14,11 @@ export const registryCommand: TCommandRegister = function (
     group,
     command,
     handler,
-    flags = {}
+    requireArgs
 ) {
     commands[group][command] = {
         handler,
-        flags: {
-            requireArgs: false,
-            ...flags
-        }
+        requireArgs
     }
 }
 
