@@ -4,6 +4,7 @@ import {setupInput, setupOutput, write} from "./core/cli";
 import {registryCommand} from "./core/parser";
 import {clear} from "./commands/system";
 import {help} from "./commands/system/help";
+import {start} from "./commands/system/start";
 
 window.onload = async () => {
     const app = document.querySelector<HTMLDivElement>('#app')
@@ -18,6 +19,7 @@ window.onload = async () => {
 
     registryCommand('sys', 'cl', clear, false, '- cl: Очищает экран')
     registryCommand('sys', 'help', help, true, '- help: Помощь')
+    registryCommand('sys', 'start', start, true, '- start: Начать игру')
     await write('Все работает', 'notification')
     console.log('Program is running and work fine!')
 }

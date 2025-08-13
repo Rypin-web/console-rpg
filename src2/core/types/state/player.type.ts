@@ -1,6 +1,6 @@
 export type TPlayer = {
     name: string | 'Путешественник',
-    spec: 'Воин' | 'Лучник',
+    spec: 'воин' |  'лучник',
     hp: {
         max: number,
         current: number
