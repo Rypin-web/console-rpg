@@ -10,10 +10,13 @@ export function setupOutput(root: HTMLDivElement) {
         if (output.length > coreConstants.MAX_LENGTH_CLI_OUTPUT) {
             if (root.firstChild) root.firstChild.remove()
             updateState('cli', {output: output.slice(1)})
-        } else root.insertAdjacentHTML('beforeend', `<p
+        } else if (output.length) root.insertAdjacentHTML('beforeend', `<p
 class='message-${output[output.length - 1][1]}'>
 ${output[output.length - 1][0]}
 </p>`)
+        if(output.length === 0) {
+            root.innerHTML = ''
+        }
 
         body.scrollIntoView({
             behavior: "instant",

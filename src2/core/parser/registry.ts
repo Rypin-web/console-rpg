@@ -5,9 +5,9 @@ import type {
 } from "../types/parser.type";
 
 export const commands: TCommandRegistry = {
-    system: {},
-    player: {},
-    shop: {}
+    sys: {},
+    pl: {},
+    sh: {}
 }
 
 export const registryCommand: TCommandRegister = function (

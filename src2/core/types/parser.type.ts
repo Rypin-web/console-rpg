@@ -1,4 +1,4 @@
-export type TCommandHandler = (args: string) => Promise<void> | void
+export type TCommandHandler = (args: any) => Promise<void> | void
 
 export type TCommand = {
     handler: TCommandHandler,
@@ -6,7 +6,7 @@ export type TCommand = {
     description: string
 }
 
-export type TGroupCommands = 'system' | 'player' | 'shop'
+export type TGroupCommands = 'sys' | 'pl' | 'sh'
 export type TCommandRegistry = Record<TGroupCommands, Record<string, TCommand>>
 
 export type TCommandRegister = (

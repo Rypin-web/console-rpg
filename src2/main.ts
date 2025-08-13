@@ -16,8 +16,8 @@ window.onload = async () => {
     setupInput(document.querySelector<HTMLDivElement>('#input')!)
     setupOutput(document.querySelector<HTMLDivElement>('#output')!)
 
-    registryCommand('system', 'cl', clear, false, '- cl: Очищает экран')
-    registryCommand('system', 'help', help, true, '- help: Помощь')
+    registryCommand('sys', 'cl', clear, false, '- cl: Очищает экран')
+    registryCommand('sys', 'help', help, true, '- help: Помощь')
     await write('Все работает', 'notification')
     console.log('Program is running and work fine!')
 }
