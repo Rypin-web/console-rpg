@@ -24,8 +24,10 @@ export const registryCommand: TCommandRegister = function (
     }
 }
 
-export function getCommand(group: TGroupCommands, command: string ): TCommand | null {
+export function getCommand(group: TGroupCommands, command?: string ): TCommand | Record<string, TCommand> | undefined {
+    if(typeof command === 'undefined') {
+        return commands[group]
+    }
     if(commands[group].hasOwnProperty(command)) return commands[group][command]
-    else return null
 }
 

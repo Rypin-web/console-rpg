@@ -22,6 +22,7 @@ export function validateCommand (parsed: TParsedCommand):TValidatorResult {
 
     return {
         valid: true,
+        //@ts-ignore
         entry
     }
 }
