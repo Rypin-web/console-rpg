@@ -14,11 +14,13 @@ export const registryCommand: TCommandRegister = function (
     group,
     command,
     handler,
-    requireArgs
+    requireArgs,
+    description
 ) {
     commands[group][command] = {
         handler,
-        requireArgs
+        requireArgs,
+        description
     }
 }
 

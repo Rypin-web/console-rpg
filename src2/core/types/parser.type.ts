@@ -2,7 +2,8 @@ export type TCommandHandler = (args: string) => Promise<void> | void
 
 export type TCommand = {
     handler: TCommandHandler,
-    requireArgs: boolean
+    requireArgs: boolean,
+    description: string
 }
 
 export type TGroupCommands = 'system' | 'player' | 'shop'
@@ -12,7 +13,8 @@ export type TCommandRegister = (
     group: TGroupCommands,
     command: string,
     handler: TCommandHandler,
-    requireArgs: boolean
+    requireArgs: boolean,
+    description: string
 ) => void
 
 export type TParsedCommand = {

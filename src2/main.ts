@@ -1,6 +1,8 @@
 //@ts-ignore
 import './style.css'
 import {setupInput, setupOutput, write} from "./core/cli";
+import {registryCommand} from "./core/parser";
+import {clear} from "./commands/system";
 
 window.onload = async () => {
     const app = document.querySelector<HTMLDivElement>('#app')
@@ -13,6 +15,7 @@ window.onload = async () => {
     setupInput(document.querySelector<HTMLDivElement>('#input')!)
     setupOutput(document.querySelector<HTMLDivElement>('#output')!)
 
+    registryCommand('system', 'cl', clear, false, '- cl: Очищает экран')
     await write('Все работает', 'notification')
     console.log('Program is running and work fine!')
 }
