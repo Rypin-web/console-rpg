@@ -2,6 +2,7 @@ import {getState, updateState} from "../state";
 import {coreConstants} from "../constants/core";
 
 export function saveCommand (input: string) {
+    if(input.trim() === '') return
     const history = getState('history')
     updateState('history', {position: -1})
     if(history.stack.includes(input)){
