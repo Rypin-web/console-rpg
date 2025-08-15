@@ -1,7 +1,7 @@
 import {checkFlag, random} from "../../../core/utils";
 import {getState, updateState} from "../../../core/state";
 import {write} from "../../../core/cli";
-import {ENEMIES} from "../../../constants/ENEMIES";
+import {Enemies} from "../../../constants/enemies";
 import {calcEnemyMaxHp} from "../../../calculations/calcEnemyMaxHp";
 import {calcEnemyDefence} from "../../../calculations/calcEnemyDefence";
 import {calcEnemyAttack} from "../../../calculations/calcEnemyAttack";
@@ -14,7 +14,7 @@ export async function findEnemy () {
 
         const playerLvl = getState('player')!.lvl
         const killedEnemies = getState('constants').killedEnemies
-        const enemy = ENEMIES[random(ENEMIES.length)]
+        const enemy = Enemies[random(Enemies.length)]
 
         enemy.hp.max = calcEnemyMaxHp(enemy.hp.max, playerLvl, killedEnemies)
         enemy.def = calcEnemyDefence(enemy.def, playerLvl)

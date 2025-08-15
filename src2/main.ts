@@ -5,7 +5,7 @@ import {registryCommand} from "./core/parser";
 import {clear} from "./commands/system";
 import {help} from "./commands/system/help";
 import {start} from "./commands/system/start";
-import {findEnemy, info} from "./commands/player";
+import {findEnemy, info, scan} from "./commands/player";
 
 window.onload = async () => {
     const app = document.querySelector<HTMLDivElement>('#app')
@@ -23,6 +23,7 @@ window.onload = async () => {
     registryCommand('sys', 'st', start, true, '- st (class) [name]: Начать игру')
     registryCommand('pl', 'inf', info, true, '- inf [key]: Информация о персонаже')
     registryCommand('pl', 'fe', findEnemy, false, '- fe: Поиск врага')
+    registryCommand('pl', 'scan', scan, true, '- scan [key]: Сканирование врага')
 
     await write('Все работает', 'notification')
     console.log('Program is running and work fine!')

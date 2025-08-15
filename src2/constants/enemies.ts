@@ -10,7 +10,7 @@ type TEnemy = {
     gold: number
 }
 
-export const ENEMIES: TEnemy[] = [
+export const Enemies: TEnemy[] = [
     {
         name: 'Крыса',
         hp: {
