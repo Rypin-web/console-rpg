@@ -1,10 +1,10 @@
-import {checkFlag, random} from "../../core/utils";
-import {getState, updateState} from "../../core/state";
-import {write} from "../../core/cli";
-import {ENEMIES} from "../../constants/ENEMIES";
-import {calcEnemyMaxHp} from "../../calculations/calcEnemyMaxHp";
-import {calcEnemyDefence} from "../../calculations/calcEnemyDefence";
-import {calcEnemyAttack} from "../../calculations/calcEnemyAttack";
+import {checkFlag, random} from "../../../core/utils";
+import {getState, updateState} from "../../../core/state";
+import {write} from "../../../core/cli";
+import {ENEMIES} from "../../../constants/ENEMIES";
+import {calcEnemyMaxHp} from "../../../calculations/calcEnemyMaxHp";
+import {calcEnemyDefence} from "../../../calculations/calcEnemyDefence";
+import {calcEnemyAttack} from "../../../calculations/calcEnemyAttack";
 
 export async function findEnemy () {
     try{

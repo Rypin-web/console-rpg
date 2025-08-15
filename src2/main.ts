@@ -5,8 +5,7 @@ import {registryCommand} from "./core/parser";
 import {clear} from "./commands/system";
 import {help} from "./commands/system/help";
 import {start} from "./commands/system/start";
-import {info} from "./commands/player/info";
-import {findEnemy} from "./commands/player/findEnemy";
+import {findEnemy, info} from "./commands/player";
 
 window.onload = async () => {
     const app = document.querySelector<HTMLDivElement>('#app')

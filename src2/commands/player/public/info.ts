@@ -1,8 +1,8 @@
-import {getState} from "../../core/state";
-import {write} from "../../core/cli";
-import type {TPlayer} from "../../core/types/state/player.type";
-import {checkFlag} from "../../core/utils";
-import {INFO_LABELS} from "../../constants/infoLabels";
+import {getState} from "../../../core/state";
+import {write} from "../../../core/cli";
+import type {TPlayer} from "../../../core/types/state/player.type";
+import {checkFlag} from "../../../core/utils";
+import {INFO_LABELS} from "../../../constants/infoLabels";
 
 export async function info(arg?: keyof TPlayer | ''): Promise<void> {
     try {
