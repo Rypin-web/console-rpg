@@ -22,8 +22,8 @@ export async function info(arg?: keyof TPlayer | ''): Promise<void> {
                     await write(infoElement[2] + player.stats.agility, 'info')
                     await write(infoElement[3] + player.stats.luck, 'info')
                 }
-            } else await write('Свойство ' + arg + ' не было найдено', 'error')
-            return
+                return
+            }
         }
 
         await write(PLAYER_INFO_LABELS.name + player.name, 'info')
