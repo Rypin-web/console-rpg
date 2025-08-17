@@ -5,7 +5,7 @@ import {write} from "../../../core/cli";
 import {info} from "./info";
 import {updateStats} from "../local/updateStats";
 
-export async function setPoint(point: keyof TPlayer['stats']): Promise<void> {
+export async function setPoint(point?: keyof TPlayer['stats']): Promise<void> {
     try {
         await checkFlag('playerIsCreated', false, [['Персонаж еще не создан. Команда не возможна', 'error']])
         await checkFlag('playerInCombat', true, [['В бою нельзя распределять характеристики', 'error']])
