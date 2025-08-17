@@ -15,6 +15,6 @@ export type TState = {
         position: number
     },
     constants: TConstants,
-    player: TPlayer | undefined,
-    enemy: TEnemy | undefined
+    player?: TPlayer,
+    enemy?: TEnemy
 }

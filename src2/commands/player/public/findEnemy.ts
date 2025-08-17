@@ -25,6 +25,5 @@ export async function findEnemy () {
 
         await write('Враг (' + enemy.name + ') нашелся!', 'notification', [500, 500])
     } catch (e) {
-
     }
 }

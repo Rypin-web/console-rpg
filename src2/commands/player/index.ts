@@ -1,3 +1,5 @@
 export {info} from './public/info'
 export {findEnemy} from './public/findEnemy'
 export {scan} from './public/scan'
+export {attack} from './public/attack'
+export {setPoint} from './public/setPoint'
