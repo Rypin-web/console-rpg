@@ -1,14 +1,14 @@
-import {checkFlags} from "../../../src/utils/checkFlags";
 import {PLAYER_CLASSES} from "../../constants/playerClasses";
 import {getState, updateState} from "../../core/state";
 import {write} from "../../core/cli";
+import {checkFlag} from "../../core/utils";
 
 function isValidSpec(spec: string): spec is keyof typeof PLAYER_CLASSES {
     return spec in PLAYER_CLASSES
 }
 
 export async function start(args: string): Promise<void> {
-    await checkFlags('playerIsCreated', true, [['Вы уже начали игру', 'info'], ['Невозможно создать двух персонажей', 'error']])
+    await checkFlag('playerIsCreated', true, [['Вы уже начали игру', 'info'], ['Невозможно создать двух персонажей', 'error']])
     const [specialization, name] = args.split(' ')
     const spec = specialization.toLowerCase()
 
