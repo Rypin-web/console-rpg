@@ -3,7 +3,7 @@ import {write} from "../../core/cli";
 import {getCommand} from "../../core/parser";
 import {commands} from "../../core/parser/registry";
 
-export async function help(type?: TGroupCommands | ''): Promise<void> {
+export async function help(type: TGroupCommands | ''): Promise<void> {
     if (!Object.hasOwn(commands, type) && type !== '') {
         await write('Неизвестная группа команд', 'error', [200, 200])
         return

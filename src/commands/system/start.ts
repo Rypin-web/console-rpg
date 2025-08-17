@@ -7,7 +7,7 @@ function isValidSpec(spec: string): spec is keyof typeof PLAYER_CLASSES {
     return spec in PLAYER_CLASSES
 }
 
-export async function start(args?: string): Promise<void> {
+export async function start(args: string): Promise<void> {
     await checkFlag('playerIsCreated', true, [['Вы уже начали игру', 'info'], ['Невозможно создать двух персонажей', 'error']])
     const [specialization, name] = args.split(' ')
     const spec = specialization.toLowerCase()
