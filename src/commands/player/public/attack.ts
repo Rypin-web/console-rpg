@@ -37,7 +37,7 @@ export async function attack(): Promise<void> {
                 await write(`Вы получили (${playerObtainedDamage}) урона`, 'combat', [200, 50])
             } else await write('Вы уклонились', 'combat')
         }
-        if (player.hp.current <= 0) {
+        if (getState('player')!.hp.current <= 0) {
             await write('Вы погибли', 'notification', [300, 50])
             updateState('player', undefined)
             updateState('enemy', undefined)
