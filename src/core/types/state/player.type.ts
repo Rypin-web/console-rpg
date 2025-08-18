@@ -1,3 +1,5 @@
+import type {TItem} from "./item.type.ts";
+
 export type TPlayer = {
     name: string | 'Путешественник',
     spec: 'воин' |  'лучник',
@@ -14,9 +16,10 @@ export type TPlayer = {
     lvl: number
     stats: {
         strength: number, // здоровье, броня
-        agility: number, // уклонение, урон
-        luck: number, // дроп предметов, золота, х2 опыт
+        agility: number, // урон
+        luck: number, // уклонение, дроп предметов, золота, х2 опыт
     },
     points: number
     gold: number,
+    inv: TItem[]
 }

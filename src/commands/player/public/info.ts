@@ -9,6 +9,14 @@ export async function info(arg?: keyof TPlayer | ''): Promise<void> {
         await checkFlag('playerIsCreated', false, [['Персонаж еще не создан. Команда невозможна', 'error']])
         const player = getState('player')!
         if (typeof arg !== 'undefined' && arg !== '') {
+            if (arg.split(' ')[0] === 'inv') {
+                await write(PLAYER_INFO_LABELS.inv, 'info', [200, 50])
+                for (const e of player.inv) {
+                    await write('- ' + e.name, 'info', [20, 30])
+                }
+                return
+            }
+
             if (Object.hasOwn(PLAYER_INFO_LABELS, arg)) {
                 const infoElement = PLAYER_INFO_LABELS[arg]
                 if (typeof infoElement === 'string') await write(infoElement + player[arg], 'info')
@@ -38,6 +46,7 @@ export async function info(arg?: keyof TPlayer | ''): Promise<void> {
         await write(PLAYER_INFO_LABELS.stats[3] + player.stats.luck, 'info')
         await write(PLAYER_INFO_LABELS.points + player.points, 'info')
         await write(PLAYER_INFO_LABELS.gold + player.gold, 'info')
+        await write('Предметы инвентаря (inv)', 'info')
 
     } catch (e) {
 
