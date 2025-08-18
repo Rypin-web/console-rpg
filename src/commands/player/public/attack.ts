@@ -1,4 +1,4 @@
-import {checkFlag} from "../../../core/utils";
+import {checkFlag, random} from "../../../core/utils";
 import {getState, updateState} from "../../../core/state";
 import {calcPlayerDamage} from "../../../calculations/calcPlayerDamage";
 import {write} from "../../../core/cli";
@@ -20,10 +20,10 @@ export async function attack(): Promise<void> {
         if (enemy.hp.current <= 0) {
             // Враг умер
             await write(`(${enemy.name}) погиб`, 'notification', [30, 50])
-            await getExperience(enemy.exp * 10)
+            await getExperience(random(player.stats.luck) > 6 ? enemy.exp * 2 : enemy.exp)
             await write(' ', 'default', [10, 10])
             await write(`Вы получили (${enemy.gold}) золота`, 'info', [30, 50])
-            updateState('player', {gold: player.gold + enemy.gold})
+            updateState('player', {gold: player.gold + (random(player.stats.luck) > 6 ? enemy.gold * 2 : enemy.gold)})
             await write(' ', 'default', [10, 10])
             updateState('enemy', undefined)
             updateState('constants', {killedEnemies: getState('constants').killedEnemies + 1})
@@ -32,8 +32,10 @@ export async function attack(): Promise<void> {
             await write(`У (${enemy.name}) осталось (${enemy.hp.current}) здоровья`, 'info')
             await write(`(${enemy.name}) атакует вас!`, 'combat', [200, 50])
             const playerObtainedDamage = enemy.att - player.def < 0 ? 0 : enemy.att - player.def
-            updateState('player', {hp: {current: player.hp.current - playerObtainedDamage, max: player.hp.max}})
-            await write(`Вы получили (${playerObtainedDamage}) урона`, 'combat', [200, 50])
+            if(random(player.stats.luck) < 10) {
+                updateState('player', {hp: {current: player.hp.current - playerObtainedDamage, max: player.hp.max}})
+                await write(`Вы получили (${playerObtainedDamage}) урона`, 'combat', [200, 50])
+            } else await write('Вы уклонились', 'combat')
         }
         if (player.hp.current <= 0) {
             await write('Вы погибли', 'notification', [300, 50])
