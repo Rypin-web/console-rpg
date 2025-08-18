@@ -42,7 +42,23 @@ export const Enemies: TEnemy[] = [
         },
         att: 10,
         def: 4,
-        exp: 10,
+        exp: 13,
         gold: 6
-    }
+    },
+    {
+        name: 'Гоблин',
+        hp: { max: 60, current: 0 },
+        att: 12,
+        def: 3,
+        exp: 10,
+        gold: 5,
+    },
+    {
+        name: 'Скелет',
+        hp: { max: 80, current: 0 },
+        att: 15,
+        def: 5,
+        exp: 15,
+        gold: 8,
+    },
 ]
