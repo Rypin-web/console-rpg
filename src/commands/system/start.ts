@@ -2,6 +2,7 @@ import {PLAYER_CLASSES} from "../../constants/playerClasses";
 import {getState, updateState} from "../../core/state";
 import {write} from "../../core/cli";
 import {checkFlag} from "../../core/utils";
+import {SHOP_USABLE} from "../../constants/shop.ts";
 
 function isValidSpec(spec: string): spec is keyof typeof PLAYER_CLASSES {
     return spec in PLAYER_CLASSES
@@ -30,38 +31,8 @@ export async function start(args: string): Promise<void> {
             lvl: 1,
             stats: specData.stats,
             points: 0,
-            gold: 0,
-            inv: [
-                {
-                    id:'hp1',
-                    name: 'Хилка',
-                    price: 213,
-                    sellPrice: 213,
-                    handle: ()=>1,
-                    description: 'Восстанавливает 40ед здоровья'
-                },{
-                    id:'hp1',
-                    name: 'Хилка',
-                    price: 213,
-                    sellPrice: 213,
-                    handle: ()=>1,
-                    description: 'Восстанавливает 40ед здоровья'
-                },{
-                    id:'hp1',
-                    name: 'Хилка',
-                    price: 213,
-                    sellPrice: 213,
-                    handle: ()=>1,
-                    description: 'Восстанавливает 40ед здоровья'
-                },{
-                    id:'hp1',
-                    name: 'Хилка',
-                    price: 213,
-                    sellPrice: 213,
-                    handle: ()=>1,
-                    description: 'Восстанавливает 40ед здоровья'
-                }
-            ]
+            gold: 1000,
+            inv: [SHOP_USABLE.brd10]
         })
         await write(`Ваш персонаж ${getState('player')?.name} создан!`, 'notification')
         updateState('flags', {playerIsCreated: true})

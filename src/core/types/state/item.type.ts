@@ -1,4 +1,4 @@
-export type TItem = TEquip | TUsable
+export type TItem = Readonly<TEquip> | Readonly<TUsable> | undefined
 
 export type TEquip = {
     id: string,

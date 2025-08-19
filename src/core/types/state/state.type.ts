@@ -3,6 +3,7 @@ import type {TConstants} from "./constants.type";
 import type {TPlayer} from "./player.type";
 import type {TEnemy} from "./enemy.type";
 import type {TCliOutput} from "./cliOutput.type";
+import type {TItem} from "./item.type.ts";
 
 export type TState = {
     flags: TFlags,
@@ -15,6 +16,7 @@ export type TState = {
         position: number
     },
     constants: TConstants,
+    shop: TItem[],
     player?: TPlayer,
     enemy?: TEnemy
 }
