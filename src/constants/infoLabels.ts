@@ -8,7 +8,7 @@ export const PLAYER_INFO_LABELS ={
     stats: ['Характеристики (stats) :', '- Сила : ', '- Ловкость : ', '- Удача : '],
     points: 'Очки характеристик (points): ',
     gold: 'Золото (gold) : ',
-    inv: 'Предметы инвентаря:'
+    inv: 'Предметы инвентаря (inv [id]):'
 } as const
 
 export const ENEMY_INFO_LABELS = {

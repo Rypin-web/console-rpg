@@ -4,7 +4,8 @@ export const state:TState = {
     flags: {
         canSendCommand: true,
         playerInCombat: false,
-        playerIsCreated: false
+        playerIsCreated: false,
+        inShop: false
     },
     cli: {
         input: [],

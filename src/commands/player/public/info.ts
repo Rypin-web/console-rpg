@@ -58,7 +58,7 @@ export async function info(arg?: keyof TPlayer | ''): Promise<void> {
         await write(PLAYER_INFO_LABELS.stats[3] + player.stats.luck, 'info')
         await write(PLAYER_INFO_LABELS.points + player.points, 'info')
         await write(PLAYER_INFO_LABELS.gold + player.gold, 'info')
-        await write('Предметы инвентаря (inv)', 'info')
+        await write(PLAYER_INFO_LABELS.inv, 'info')
 
     } catch (e) {
 

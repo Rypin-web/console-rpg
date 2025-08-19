@@ -12,12 +12,12 @@ export async function help(type: TGroupCommands | ''): Promise<void> {
         'Выберите группу команд:',
         '- Cистемные: help sys',
         '- Игрока: help pl',
-    ]) await write(e, 'info', [200, 20])
+    ]) await write(e, 'info', [20, 20])
     else {
         const groupCommands = getCommand(type)
         if(groupCommands && Object.hasOwn(commands, type))
             // @ts-ignore
-            for(const e of Object.keys(groupCommands)) await write(groupCommands[e].description, 'info', [200, 20])
+            for(const e of Object.keys(groupCommands)) await write(groupCommands[e].description, 'info', [20, 20])
     }
 }
 

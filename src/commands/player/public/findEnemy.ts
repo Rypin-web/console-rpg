@@ -10,6 +10,8 @@ export async function findEnemy () {
     try{
         await checkFlag('playerIsCreated', false, [['Персонаж еще не создан. Команда невозможна', 'error']])
         await checkFlag('playerInCombat', true, [[`Вы уже нашли врага: ${getState('enemy')?.name}`, 'info']])
+        await checkFlag('inShop', true, [['В магазине нельзя найти врага', 'notification'],
+            ['Покиньте магазин чтобы найти врага', 'notification']])
         await write('Ищем врага...', 'info')
 
         const playerLvl = getState('player')!.lvl
