@@ -4,7 +4,7 @@ import type {TPlayer} from "../../../core/types/state/player.type";
 import {checkFlag} from "../../../core/utils";
 import {PLAYER_INFO_LABELS} from "../../../constants/infoLabels";
 
-export async function info(arg?: keyof TPlayer | ''): Promise<void> {
+export async function playerInfo(arg?: keyof TPlayer | ''): Promise<void> {
     try {
         await checkFlag('playerIsCreated', false, [['Персонаж еще не создан. Команда невозможна', 'error']])
         const player = getState('player')!
@@ -14,11 +14,11 @@ export async function info(arg?: keyof TPlayer | ''): Promise<void> {
                 if (typeof itemId === 'undefined') {
                     await write(PLAYER_INFO_LABELS.inv, 'info', [200, 50])
                     for (const e of player.inv) {
-                        await write('- ' + e.name + ` (${e.id})`, 'info', [20, 30])
+                        await write('- ' + e?.name + ` (${e?.id})`, 'info', [20, 30])
                     }
                 }else {
                     const [item] = player.inv.filter((e) => {
-                        if(e.id === itemId) return e
+                        if(e?.id === itemId) return e
                     })
                     if(typeof item === "undefined") await write('Предмет не найден в инвентаре', 'notification')
                     else {

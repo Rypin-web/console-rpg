@@ -1,0 +1,1 @@
+export {shopInfo} from './public/info'

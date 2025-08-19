@@ -1,6 +1,6 @@
 import {getState, updateState} from "../../../core/state";
 import {write} from "../../../core/cli";
-import {info} from "../public/info";
+import {playerInfo} from "../public/info";
 import {calcNeedToLvlUp} from "../../../calculations/calcNeedToLvlUp";
 
 export async function getExperience(gotExp: number) {
@@ -30,8 +30,8 @@ export async function getExperience(gotExp: number) {
             }
         })
     }
-    await info('lvl')
-    await info('exp')
+    await playerInfo('lvl')
+    await playerInfo('exp')
     // Полученный опыт после повышения больше требуемого для нового повышения уровня
     if (player.exp.needToLvlUp !== null && player.exp.current + gotExp >= player.exp.needToLvlUp) await getExperience(0)
 }

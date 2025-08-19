@@ -18,7 +18,9 @@ export const state:TState = {
     constants: {
         killedEnemies: 0
     },
-    shop: [],
+    shop: {
+        itemsInSell: []
+    },
     player: undefined,
     enemy: undefined
 }

@@ -2,7 +2,7 @@ import type {TPlayer} from "../../../core/types/state/player.type";
 import {checkFlag} from "../../../core/utils";
 import {getState, updateState} from "../../../core/state";
 import {write} from "../../../core/cli";
-import {info} from "./info";
+import {playerInfo} from "./info";
 import {updateStats} from "../local/updateStats";
 
 export async function setPoint(point: keyof TPlayer['stats']): Promise<void> {
@@ -17,12 +17,12 @@ export async function setPoint(point: keyof TPlayer['stats']): Promise<void> {
             return
         }
         if (Object.hasOwn(player.stats, point)) {
-            await info('stats')
+            await playerInfo('stats')
             await write('Распределение...', 'info', [20, 30])
             const newStats = player.stats
             newStats[point] = newStats[point] + 1
             updateState('player', {stats: newStats, points: player.points - 1})
-            await info('stats')
+            await playerInfo('stats')
             updateStats()
         } else {
             await write('Выберите одну из характеристик:', 'info', [200, 50])

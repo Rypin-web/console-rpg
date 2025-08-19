@@ -8,5 +8,5 @@ export function generateNewStuff () {
     const firstSlot = SHOP_EQUIP[equipKeys[random(equipKeys.length)]]
     const secondSlot = SHOP_EQUIP[equipKeys[random(equipKeys.length)]]
     const thirdSlot = SHOP_USABLE[usableKeys[random(usableKeys.length)]]
-    updateState('shop', [firstSlot, secondSlot, thirdSlot])
+    updateState('shop', {itemsInSell: [firstSlot, secondSlot, thirdSlot]})
 }
