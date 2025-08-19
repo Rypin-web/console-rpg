@@ -33,25 +33,33 @@ export async function start(args: string): Promise<void> {
             gold: 0,
             inv: [
                 {
+                    id:'hp1',
                     name: 'Хилка',
                     price: 213,
                     sellPrice: 213,
-                    handle: ()=>1
+                    handle: ()=>1,
+                    description: 'Восстанавливает 40ед здоровья'
                 },{
+                    id:'hp1',
                     name: 'Хилка',
                     price: 213,
                     sellPrice: 213,
-                    handle: ()=>1
+                    handle: ()=>1,
+                    description: 'Восстанавливает 40ед здоровья'
                 },{
+                    id:'hp1',
                     name: 'Хилка',
                     price: 213,
                     sellPrice: 213,
-                    handle: ()=>1
+                    handle: ()=>1,
+                    description: 'Восстанавливает 40ед здоровья'
                 },{
+                    id:'hp1',
                     name: 'Хилка',
                     price: 213,
                     sellPrice: 213,
-                    handle: ()=>1
+                    handle: ()=>1,
+                    description: 'Восстанавливает 40ед здоровья'
                 }
             ]
         })

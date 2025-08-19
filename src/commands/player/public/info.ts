@@ -10,9 +10,21 @@ export async function info(arg?: keyof TPlayer | ''): Promise<void> {
         const player = getState('player')!
         if (typeof arg !== 'undefined' && arg !== '') {
             if (arg.split(' ')[0] === 'inv') {
-                await write(PLAYER_INFO_LABELS.inv, 'info', [200, 50])
-                for (const e of player.inv) {
-                    await write('- ' + e.name, 'info', [20, 30])
+                const itemId = arg.split(' ')[1]
+                if (typeof itemId === 'undefined') {
+                    await write(PLAYER_INFO_LABELS.inv, 'info', [200, 50])
+                    for (const e of player.inv) {
+                        await write('- ' + e.name + ` (${e.id})`, 'info', [20, 30])
+                    }
+                }else {
+                    const [item] = player.inv.filter((e) => {
+                        if(e.id === itemId) return e
+                    })
+                    if(typeof item === "undefined") await write('Предмет не найден в инвентаре', 'notification')
+                    else {
+                        await write(item.name + ` (${item.id})`, 'info', [20,50])
+                        await write(item.description, 'info', [20,50])
+                    }
                 }
                 return
             }
