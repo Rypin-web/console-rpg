@@ -6,7 +6,7 @@ import {help} from "./commands/system/help";
 import {start} from "./commands/system/start";
 import {attack, findEnemy, playerInfo, scan, setPoint, use} from "./commands/player";
 import {goToShop} from "./commands/player/public/goToShop.ts";
-import {buy, shopInfo} from "./commands/shop";
+import {buy, sell, shopInfo} from "./commands/shop";
 
 window.onload = async () => {
     const app = document.querySelector<HTMLDivElement>('#app')
@@ -31,6 +31,7 @@ window.onload = async () => {
     registryCommand('sh', 'inf', shopInfo, true, '- inf [id]: Информация о товарах в продаже')
     registryCommand('pl', 'u', use, true, '- u (id): Использовать расходник')
     registryCommand('sh', 'b', buy, true, '-b (id): Купить предмет')
+    registryCommand('sh', 's', sell, true, '-s (id): Продать предмет')
 
     await write('Введите sys help чтобы узнать команды', 'notification')
     console.log('Program is running and work fine!')

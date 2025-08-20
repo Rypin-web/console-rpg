@@ -17,7 +17,8 @@ export type TState = {
     },
     constants: TConstants,
     shop: {
-        itemsInSell: TItem[]
+        itemsInSell: TItem[],
+        soldItems: TItem[]
     },
     player?: TPlayer,
     enemy?: TEnemy
