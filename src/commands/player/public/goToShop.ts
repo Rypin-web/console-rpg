@@ -12,9 +12,9 @@ export async function goToShop ():Promise<void> {
 
     if(inShop) {
         updateState('flags', {inShop: false})
+        updateState('shop', {soldItems: []})
         await write('Вы ушли из магазина', 'info')
     } else{
-        console.log(shop.itemsInSell.length)
         if(shop.itemsInSell.length === 0) generateNewStuff()
         updateState('flags', {inShop: true})
         await write('Вы вошли в магазин', 'info')
