@@ -3,6 +3,12 @@ import {write} from "../../../core/cli";
 import type {TPlayer} from "../../../core/types/state/player.type";
 import {checkFlag} from "../../../core/utils";
 import {PLAYER_INFO_LABELS} from "../../../constants/infoLabels";
+import type {TEquip, TItem} from "../../../core/types/state/item.type.ts";
+
+function isEquip(item: TItem): item is Readonly<TEquip> {
+    if (typeof item === 'undefined') return false
+    return 'type' in item
+}
 
 export async function playerInfo(arg?: keyof TPlayer | ''): Promise<void> {
     try {
@@ -16,14 +22,20 @@ export async function playerInfo(arg?: keyof TPlayer | ''): Promise<void> {
                     for (const e of player.inv) {
                         await write('- ' + e?.name + ` (${e?.id})`, 'info', [20, 30])
                     }
-                }else {
-                    const [item] = player.inv.filter((e) => {
-                        if(e?.id === itemId) return e
-                    })
-                    if(typeof item === "undefined") await write('Предмет не найден в инвентаре', 'notification')
+                } else {
+                    const [item] = player.inv.filter((e) => (e?.id === itemId))
+                    if (typeof item === "undefined") await write('Предмет не найден в инвентаре', 'notification')
                     else {
-                        await write(item.name + ` (${item.id})`, 'info', [20,50])
-                        await write(item.description, 'info', [20,50])
+                        await write(item.name + ` (${item.id})`, 'info', [20, 50])
+                        if (isEquip(item)) {
+                            await write(`Тип экипировки: (${item.type === 'weapon' ? 'Оружие'
+                                : item.type === 'armor' ? 'Броня' : 'Щит'})`, 'info', [20, 50])
+                            if (item.stats.strength) await write(`Улучшится сила на (${item.stats.strength})`, 'info', [20, 50])
+                            if (item.stats.agility) await write(`Улучшится ловкость на (${item.stats.agility})`, 'info', [20, 50])
+                            if (item.def) await write(`Улучшится броня на (${item.def})`, 'info', [20, 50])
+                        }
+                        await write(`Продажа: (${item.sellPrice})g`, 'info', [20, 50])
+                        await write(item.description, 'info', [20, 50])
                     }
                 }
                 return
