@@ -85,7 +85,7 @@ export const SHOP_USABLE = {
     'p1': {
         id: "p1",
         name: "Малое зелье здоровья",
-        gambling: {die: 0, takeDamage: 0, restore: 100, doubleRestore: 5},
+        gambling: {die: 0, takeDamage: 0, doubleRestore: 5},
         effects: {minTakeDamage: 0, maxTakeDamage: 0, minRestore: 10, maxRestore: 15},
         price: 30,
         sellPrice: 10,
@@ -95,7 +95,7 @@ export const SHOP_USABLE = {
     'p2': {
         id: "p2",
         name: "Зелье здоровья",
-        gambling: {die: 0, takeDamage: 0, restore: 100, doubleRestore: 5},
+        gambling: {die: 0, takeDamage: 0, doubleRestore: 5},
         effects: {minTakeDamage: 0, maxTakeDamage: 0, minRestore: 20, maxRestore: 25},
         price: 50,
         sellPrice: 20,
@@ -105,7 +105,7 @@ export const SHOP_USABLE = {
     'f1': {
         id: "f1",
         name: "Чёрствый хлеб",
-        gambling: {die: 3, takeDamage: 20, restore: 77, doubleRestore: 0},
+        gambling: {die: 3, takeDamage: 20, doubleRestore: 4},
         effects: {minTakeDamage: 5, maxTakeDamage: 12, minRestore: 8, maxRestore: 15},
         price: 10,
         sellPrice: 2,
@@ -116,7 +116,7 @@ export const SHOP_USABLE = {
     'f2': {
         id: "f2",
         name: "Мясо крысы",
-        gambling: {die: 5, takeDamage: 25, restore: 70, doubleRestore: 0},
+        gambling: {die: 5, takeDamage: 25, doubleRestore: 1},
         effects: {minTakeDamage: 8, maxTakeDamage: 18, minRestore: 12, maxRestore: 20},
         price: 15,
         sellPrice: 4,
@@ -126,7 +126,7 @@ export const SHOP_USABLE = {
     'f3': {
         id: "f3",
         name: "Гриб",
-        gambling: {die: 8, takeDamage: 30, restore: 62, doubleRestore: 0},
+        gambling: {die: 8, takeDamage: 30, doubleRestore: 14},
         effects: {minTakeDamage: 10, maxTakeDamage: 22, minRestore: 15, maxRestore: 25},
         price: 12,
         sellPrice: 3,
@@ -136,7 +136,7 @@ export const SHOP_USABLE = {
     'f4': {
         id: "rot_berry",
         name: "Ягоды",
-        gambling: {die: 2, takeDamage: 35, restore: 63, doubleRestore: 0},
+        gambling: {die: 2, takeDamage: 35, doubleRestore: 0},
         effects: {minTakeDamage: 3, maxTakeDamage: 10, minRestore: 5, maxRestore: 12},
         price: 8,
         sellPrice: 1,

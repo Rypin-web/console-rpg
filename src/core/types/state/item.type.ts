@@ -20,7 +20,6 @@ export type TUsable = {
     gambling:{
         die: number,
         takeDamage: number,
-        restore: number,
         doubleRestore: number
     },
     effects:{
