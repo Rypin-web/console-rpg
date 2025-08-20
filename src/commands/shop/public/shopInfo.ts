@@ -9,7 +9,7 @@ export async function shopInfo(id: string): Promise<void> {
         const shop = getState('shop')
         await write('Сейчас в продаже: ', 'info')
         if (id) {
-            const [item] = shop.itemsInSell.filter((e) => (e?.id === id))
+            const item = shop.itemsInSell.find((e) => (e?.id === id))
             if (typeof item !== 'undefined') {
                 await write(`${item.name} (${item.id}) :`, 'info', [50, 50])
                 await write(`${item.description}`, 'info', [50, 50])

@@ -11,7 +11,7 @@ export async function buy(id: string): Promise<void> {
 
         const {itemsInSell} = getState('shop')
         const {inv , gold} = getState('player')!
-        const [item] = itemsInSell.filter((e) => (e?.id === id))
+        const item = itemsInSell.find((e) => (e?.id === id))
 
         if(typeof item === 'undefined'){
             await write(`Такого предмета нет в продаже : (${id})`, 'notification', [50, 50])
