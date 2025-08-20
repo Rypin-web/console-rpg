@@ -4,7 +4,7 @@ import {registryCommand} from "./core/parser";
 import {clear} from "./commands/system";
 import {help} from "./commands/system/help";
 import {start} from "./commands/system/start";
-import {attack, findEnemy, playerInfo, scan, setPoint} from "./commands/player";
+import {attack, findEnemy, playerInfo, scan, setPoint, use} from "./commands/player";
 import {goToShop} from "./commands/player/public/goToShop.ts";
 import {shopInfo} from "./commands/shop";
 
@@ -28,7 +28,8 @@ window.onload = async () => {
     registryCommand('pl', 'att', attack, false, '- att: Атаковать врага')
     registryCommand('pl', 'stp', setPoint, true, '- stp [point]: Распределить очко характеристик')
     registryCommand('pl', 'gtsh', goToShop, false, '- gtsh: Отправится или покинуть магазин')
-    registryCommand('sh', 'inf', shopInfo, true, '- inf [id]: информация о товарах в продаже')
+    registryCommand('sh', 'inf', shopInfo, true, '- inf [id]: Информация о товарах в продаже')
+    registryCommand('pl', 'u', use, true, '= u (id): Использовать расходник')
 
     await write('Введите sys help чтобы узнать команды', 'notification')
     console.log('Program is running and work fine!')
