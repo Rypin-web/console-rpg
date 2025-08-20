@@ -3,12 +3,7 @@ import {write} from "../../../core/cli";
 import type {TPlayer} from "../../../core/types/state/player.type";
 import {checkFlag} from "../../../core/utils";
 import {PLAYER_INFO_LABELS} from "../../../constants/infoLabels";
-import type {TEquip, TItem} from "../../../core/types/state/item.type.ts";
-
-function isEquip(item: TItem): item is Readonly<TEquip> {
-    if (typeof item === 'undefined') return false
-    return 'type' in item
-}
+import {isEquip} from "../../../core/utils/isEquip.ts";
 
 export async function playerInfo(arg?: keyof TPlayer | ''): Promise<void> {
     try {

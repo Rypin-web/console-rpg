@@ -20,7 +20,7 @@ export async function start(args: string): Promise<void> {
             spec: spec,
             hp: {
                 max: specData.hp,
-                current: specData.hp
+                current: specData.hp - 20
             },
             exp: {
                 coefficient: 0.05,
