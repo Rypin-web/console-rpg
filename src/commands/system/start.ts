@@ -31,7 +31,7 @@ export async function start(args: string): Promise<void> {
             lvl: 1,
             stats: specData.stats,
             points: 0,
-            gold: 1000,
+            gold: 0,
             inv: [
                 SHOP_USABLE['f1'],
                 SHOP_USABLE['f1'],
