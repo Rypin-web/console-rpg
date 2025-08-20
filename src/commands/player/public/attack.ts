@@ -3,6 +3,7 @@ import {getState, updateState} from "../../../core/state";
 import {calcPlayerDamage} from "../../../calculations/calcPlayerDamage";
 import {write} from "../../../core/cli";
 import {getExperience} from "../local/getExperience";
+import {takeDamage} from "../../../core/utils/takeDamage.ts";
 
 export async function attack(): Promise<void> {
     try {
@@ -32,17 +33,8 @@ export async function attack(): Promise<void> {
             await write(`У (${enemy.name}) осталось (${enemy.hp.current}) здоровья`, 'info')
             await write(`(${enemy.name}) атакует вас!`, 'combat', [200, 50])
             const playerObtainedDamage = enemy.att - player.def < 0 ? 0 : enemy.att - player.def
-            if(random(player.stats.luck) < 10) {
-                updateState('player', {hp: {current: player.hp.current - playerObtainedDamage, max: player.hp.max}})
-                await write(`Вы получили (${playerObtainedDamage}) урона`, 'combat', [200, 50])
-            } else await write('Вы уклонились', 'combat')
-        }
-        if (getState('player')!.hp.current <= 0) {
-            await write('Вы погибли', 'notification', [300, 50])
-            updateState('player', undefined)
-            updateState('enemy', undefined)
-            updateState('constants', {killedEnemies: 0})
-            updateState('flags', {playerIsCreated: false, playerInCombat: false})
+            if (random(player.stats.luck) < 10) await takeDamage(playerObtainedDamage)
+            else await write('Вы уклонились', 'combat')
         }
     } catch (e) {
     }

@@ -2,6 +2,8 @@ import type {TUsable} from "../types/state/item.type.ts";
 import {getState, updateState} from "../state";
 import {write} from "../cli";
 import {random} from "./random.ts";
+import {diePlayer} from "./diePlayer.ts";
+import {takeDamage} from "./takeDamage.ts";
 
 
 export async function usableHandle(this: TUsable) {
@@ -26,23 +28,3 @@ export async function usableHandle(this: TUsable) {
     updateState('player', {hp: {current: currentHp, max: player.hp.max}})
 }
 
-async function takeDamage(damage: number) {
-    const player = getState('player')!
-    const obtainedDamage = damage - player.def < 0 ? 0 : damage - player.def
-    await write(`Вы получили (${damage}) урона`, 'combat')
-    if (player.hp.current - obtainedDamage < 1) await diePlayer()
-    else updateState('player', {hp: {current: player.hp.current - obtainedDamage, max: player.hp.max}})
-}
-
-async function diePlayer() {
-    await write('Вы умерли', 'combat')
-    updateState('player', undefined)
-    updateState('enemy', undefined)
-    updateState('shop', {itemsInSell: []})
-    updateState('constants', {killedEnemies: 0})
-    updateState('flags', {
-        playerInCombat: false,
-        playerIsCreated: false,
-        inShop: false
-    })
-}
