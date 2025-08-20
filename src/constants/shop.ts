@@ -1,3 +1,4 @@
+import {usableHandle} from "../core/utils/usableHandle.ts";
 
 export const SHOP_EQUIP = {
     'swd5':{
@@ -81,28 +82,28 @@ export const SHOP_EQUIP = {
 } as const
 
 export const SHOP_USABLE = {
-    'hp10':{
-        id: "hp10",
+    'hp@10':{
+        id: "hp@10",
         name: "Малое зелье здоровья",
         price: 30,
         sellPrice: 15,
-        handle: () => {console.log('handle')},
+        handle: usableHandle,
         description: "Восстанавливает 10 HP. Пахнет травами и надеждой."
     },
-    'hp25': {
-        id: "hp25",
+    'hp@25': {
+        id: "hp@25",
         name: "Зелье здоровья",
         price: 60,
         sellPrice: 30,
-        handle: () => {console.log('handle')},
+        handle: usableHandle,
         description: "Восстанавливает 25 HP. Стандартное снадобье путника."
     },
-    'brd10': {
-        id: "brd10",
+    'brd@10': {
+        id: "brd@10",
         name: "Чёрствый хлеб",
         price: 15,
         sellPrice: 5,
-        handle: () => {console.log('handle')},
+        handle: usableHandle,
         description: "Восстанавливает 10 HP. Лучше есть в темноте, чтобы не видеть плесень."
     }
 } as const

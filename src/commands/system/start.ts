@@ -20,7 +20,7 @@ export async function start(args: string): Promise<void> {
             spec: spec,
             hp: {
                 max: specData.hp,
-                current: specData.hp - 20
+                current: specData.hp - 80
             },
             exp: {
                 coefficient: 0.05,
@@ -32,7 +32,7 @@ export async function start(args: string): Promise<void> {
             stats: specData.stats,
             points: 0,
             gold: 1000,
-            inv: [SHOP_USABLE.brd10, SHOP_EQUIP.lth7]
+            inv: [SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'],SHOP_USABLE['brd@10'], SHOP_EQUIP.lth7]
         })
         await write(`Ваш персонаж ${getState('player')?.name} создан!`, 'notification')
         updateState('flags', {playerIsCreated: true})

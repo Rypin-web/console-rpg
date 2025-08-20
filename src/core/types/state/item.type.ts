@@ -19,6 +19,6 @@ export type TUsable = {
     name: string,
     price: number,
     sellPrice: number
-    handle: (item:TUsable) => void
+    handle: (this:TUsable) => void
     description: string
 }
