@@ -14,6 +14,7 @@ export async function playerInfo(arg?: keyof TPlayer | ''): Promise<void> {
                 const itemId = arg.split(' ')[1]
                 if (typeof itemId === 'undefined') {
                     await write(PLAYER_INFO_LABELS.inv, 'info', [200, 50])
+                    await write(`Сейчас у вас (${player.inv.length}) предметов`, 'info')
                     for (const e of player.inv) {
                         await write('- ' + e?.name + ` (${e?.id})`, 'info', [20, 30])
                     }
