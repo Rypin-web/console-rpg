@@ -1,60 +1,60 @@
 import {usableHandle} from "../core/utils/usableHandle.ts";
 
 export const SHOP_EQUIP = {
-    'swd5':{
-        id: "swd5",  // "sword" + agl 5
+    'wpn1': {
+        id: "wpn1",
         name: "Ржавый меч",
         type: "weapon",
         stats: {
             strength: 0,
             agility: 5,
         },
-        def:0,
+        def: 0,
         price: 50,
         sellPrice: 25,
         description: "Старый, потрёпанный меч. Ещё может резать, но недолго."
     },
-    'bow8':{
-        id: "bow8",  // "bow" + agl 8
+    'wpn2': {
+        id: "wpn2",
         name: "Деревянный лук",
         type: "weapon",
         stats: {
             strength: 0,
             agility: 8,
         },
-        def:0,
+        def: 0,
         price: 80,
         sellPrice: 40,
         description: "Простой лук, сделанный из гибкого дерева. Стреляет недалеко, но метко."
     },
-    'rob3':{
-        id: "rob3",  // "robe" + str 3
+    'arm1': {
+        id: "arm1",
         name: "Роба бродяги",
         type: "armor",
         stats: {
             strength: 3,
             agility: 0,
         },
-        def:0,
+        def: 0,
         price: 30,
         sellPrice: 15,
         description: "Потрёпанная одежда, которая едва защищает от ветра, не то что от ударов."
     },
-    'lth7': {
-        id: "lth7",  // "leather" + str 7
+    'arm2': {
+        id: "arm2",
         name: "Кожаный доспех",
         type: "armor",
         stats: {
             strength: 7,
             agility: 0,
         },
-        def:0,
+        def: 0,
         price: 120,
         sellPrice: 60,
         description: "Прочная, но гибкая кожаная броня. Лучше, чем тряпки."
     },
-    'shl4':{
-        id: "shl6",  // "shield" + def 4
+    'shl1': {
+        id: "shl1",
         name: "Деревянный щит",
         type: "shield",
         stats: {
@@ -66,8 +66,8 @@ export const SHOP_EQUIP = {
         sellPrice: 20,
         description: "Лёгкий щит из досок. Может заблокировать пару ударов, но не больше."
     },
-    'bck6':{
-        id: "bck6",  // "buckler" (маленький щит) + def 6
+    'shl2': {
+        id: "shl2",
         name: "Железный баклер",
         type: "shield",
         stats: {
@@ -82,28 +82,65 @@ export const SHOP_EQUIP = {
 } as const
 
 export const SHOP_USABLE = {
-    'hp@10':{
-        id: "hp@10",
+    'p1': {
+        id: "p1",
         name: "Малое зелье здоровья",
+        gambling: {die: 0, takeDamage: 0, restore: 100, doubleRestore: 5},
+        effects: {minTakeDamage: 0, maxTakeDamage: 0, minRestore: 10, maxRestore: 15},
         price: 30,
-        sellPrice: 15,
+        sellPrice: 10,
         handle: usableHandle,
-        description: "Восстанавливает 10 HP. Пахнет травами и надеждой."
+        description: "Надёжное зелье, сваренное подмастерьем алхимика. Восстанавливает 15 здоровья."
     },
-    'hp@25': {
-        id: "hp@25",
+    'p2': {
+        id: "p2",
         name: "Зелье здоровья",
-        price: 60,
-        sellPrice: 30,
+        gambling: {die: 0, takeDamage: 0, restore: 100, doubleRestore: 5},
+        effects: {minTakeDamage: 0, maxTakeDamage: 0, minRestore: 20, maxRestore: 25},
+        price: 50,
+        sellPrice: 20,
         handle: usableHandle,
-        description: "Восстанавливает 25 HP. Стандартное снадобье путника."
+        description: "Надёжное зелье алхимика. Восстанавливает 25 здоровья."
     },
-    'brd@10': {
-        id: "brd@10",
+    'f1': {
+        id: "f1",
         name: "Чёрствый хлеб",
-        price: 15,
-        sellPrice: 5,
+        gambling: {die: 3, takeDamage: 20, restore: 77, doubleRestore: 0},
+        effects: {minTakeDamage: 5, maxTakeDamage: 12, minRestore: 8, maxRestore: 15},
+        price: 10,
+        sellPrice: 2,
         handle: usableHandle,
-        description: "Восстанавливает 10 HP. Лучше есть в темноте, чтобы не видеть плесень."
-    }
+        description: "Хлеб, пропитанный скверной. Пахнет плесенью и отчаянием."
+    },
+
+    'f2': {
+        id: "f2",
+        name: "Мясо крысы",
+        gambling: {die: 5, takeDamage: 25, restore: 70, doubleRestore: 0},
+        effects: {minTakeDamage: 8, maxTakeDamage: 18, minRestore: 12, maxRestore: 20},
+        price: 15,
+        sellPrice: 4,
+        handle: usableHandle,
+        description: "Мясо мутировавшей крысы. Шерсть ещё осталась между зубов."
+    },
+    'f3': {
+        id: "f3",
+        name: "Гриб",
+        gambling: {die: 8, takeDamage: 30, restore: 62, doubleRestore: 0},
+        effects: {minTakeDamage: 10, maxTakeDamage: 22, minRestore: 15, maxRestore: 25},
+        price: 12,
+        sellPrice: 3,
+        handle: usableHandle,
+        description: "Бледный гриб с ядовитым отливом. Вызывает видения."
+    },
+    'f4': {
+        id: "rot_berry",
+        name: "Ягоды",
+        gambling: {die: 2, takeDamage: 35, restore: 63, doubleRestore: 0},
+        effects: {minTakeDamage: 3, maxTakeDamage: 10, minRestore: 5, maxRestore: 12},
+        price: 8,
+        sellPrice: 1,
+        handle: usableHandle,
+        description: "Ягоды, растущие на гниющих трупах. Сладковатый привкус тлена."
+    },
 } as const

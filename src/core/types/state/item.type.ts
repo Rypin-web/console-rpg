@@ -17,6 +17,18 @@ export type TEquip = {
 export type TUsable = {
     id:string,
     name: string,
+    gambling:{
+        die: number,
+        takeDamage: number,
+        restore: number,
+        doubleRestore: number
+    },
+    effects:{
+        minTakeDamage:number,
+        maxTakeDamage:number,
+        minRestore:number,
+        maxRestore:number
+    }
     price: number,
     sellPrice: number
     handle: (this:TUsable) => void
