@@ -1,1 +1,1 @@
-export {shopInfo} from './public/info'
+export {shopInfo} from './public/shopInfo.ts'

@@ -2,7 +2,7 @@ import type {TPlayer} from "../../../core/types/state/player.type";
 import {checkFlag} from "../../../core/utils";
 import {getState, updateState} from "../../../core/state";
 import {write} from "../../../core/cli";
-import {playerInfo} from "./info";
+import {playerInfo} from "./playerInfo.ts";
 import {updateStats} from "../local/updateStats";
 
 export async function setPoint(point: keyof TPlayer['stats']): Promise<void> {

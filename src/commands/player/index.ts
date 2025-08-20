@@ -1,4 +1,4 @@
-export {playerInfo} from './public/info'
+export {playerInfo} from './public/playerInfo.ts'
 export {findEnemy} from './public/findEnemy'
 export {scan} from './public/scan'
 export {attack} from './public/attack'

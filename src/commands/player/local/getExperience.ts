@@ -1,6 +1,6 @@
 import {getState, updateState} from "../../../core/state";
 import {write} from "../../../core/cli";
-import {playerInfo} from "../public/info";
+import {playerInfo} from "../public/playerInfo.ts";
 import {calcNeedToLvlUp} from "../../../calculations/calcNeedToLvlUp";
 
 export async function getExperience(gotExp: number) {
