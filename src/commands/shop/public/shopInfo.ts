@@ -15,8 +15,13 @@ export async function shopInfo(id: string): Promise<void> {
                 await write(`${item.description}`, 'info', [50, 50])
                 await write(`Цена: ${item.price} золота`, 'info', [50, 50])
             } else await write(`Такого предмета нет в продаже : (${id})`, 'notification', [50, 50])
-        } else for (const e of [...shop.itemsInSell]) {
-            await write(`${e?.name} (${e?.id}) : ${e?.price}g`, "info")
+        } else {
+            for (const e of [...shop.itemsInSell]) await write(`${e?.name} (${e?.id}) : ${e?.price}g`, "info")
+            if (shop.soldItems.length) {
+                await write(' ', 'default')
+                await write('Ваши проданные предметы:', 'info')
+                for (const e of [...shop.soldItems]) await write(`${e?.name} (${e?.id}): ${e?.sellPrice}g`, 'info')
+            }
         }
     } catch (e) {
     }
