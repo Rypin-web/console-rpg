@@ -10,8 +10,9 @@ export async function help(type: TGroupCommands | ''): Promise<void> {
     }
     if (type === '') for (const e of [
         'Выберите группу команд:',
-        '- Cистемные: help sys',
-        '- Игрока: help pl',
+        '- Cистемные: sys help sys',
+        '- Игрока: sys help pl',
+        '- Магазина: sys help sh'
     ]) await write(e, 'info', [20, 20])
     else {
         const groupCommands = getCommand(type)
