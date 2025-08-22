@@ -11,8 +11,8 @@ export const SHOP_EQUIP = {
             agility: 5,
         },
         def: 0,
-        price: 50,
-        sellPrice: 25,
+        price: 15,
+        sellPrice: 5,
         description: "Старый, потрёпанный меч. Ещё может резать, но недолго."
     },
     'wpn2': {
@@ -22,7 +22,7 @@ export const SHOP_EQUIP = {
         isEquipped: false,
         stats: {
             strength: 0,
-            agility: 8,
+            agility: 9,
         },
         def: 0,
         price: 80,
@@ -39,8 +39,8 @@ export const SHOP_EQUIP = {
             agility: 0,
         },
         def: 0,
-        price: 30,
-        sellPrice: 15,
+        price: 15,
+        sellPrice: 5,
         description: "Потрёпанная одежда, которая едва защищает от ветра, не то что от ударов."
     },
     'arm2': {
@@ -53,8 +53,8 @@ export const SHOP_EQUIP = {
             agility: 0,
         },
         def: 0,
-        price: 120,
-        sellPrice: 60,
+        price: 70,
+        sellPrice: 20,
         description: "Прочная, но гибкая кожаная броня. Лучше, чем тряпки."
     },
     'shl1': {
@@ -67,8 +67,8 @@ export const SHOP_EQUIP = {
             agility: 0,
         },
         def: 4,
-        price: 40,
-        sellPrice: 20,
+        price: 25,
+        sellPrice: 5,
         description: "Лёгкий щит из досок. Может заблокировать пару ударов, но не больше."
     },
     'shl2': {
@@ -81,8 +81,8 @@ export const SHOP_EQUIP = {
             agility: 0,
         },
         def: 6,
-        price: 90,
-        sellPrice: 45,
+        price: 60,
+        sellPrice: 15,
         description: "Небольшой, но прочный щит. Удобен в ближнем бою."
     }
 } as const

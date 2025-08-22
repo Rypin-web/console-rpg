@@ -20,7 +20,7 @@ export async function start(args: string): Promise<void> {
             spec: spec,
             hp: {
                 max: specData.hp,
-                current: specData.hp - 80
+                current: specData.hp
             },
             exp: {
                 coefficient: 0.05,
@@ -36,7 +36,7 @@ export async function start(args: string): Promise<void> {
             lvl: 1,
             stats: specData.stats,
             points: 0,
-            gold: 0,
+            gold: 10,
             inv: [
                 SHOP_USABLE['f1'],
                 SHOP_USABLE['f3']
