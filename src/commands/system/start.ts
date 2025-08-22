@@ -2,7 +2,7 @@ import {PLAYER_CLASSES} from "../../constants/playerClasses";
 import {getState, updateState} from "../../core/state";
 import {write} from "../../core/cli";
 import {checkFlag} from "../../core/utils";
-import {SHOP_EQUIP, SHOP_USABLE} from "../../constants/shop.ts";
+import {SHOP_USABLE} from "../../constants/shop.ts";
 
 function isValidSpec(spec: string): spec is keyof typeof PLAYER_CLASSES {
     return spec in PLAYER_CLASSES
@@ -36,14 +36,10 @@ export async function start(args: string): Promise<void> {
             lvl: 1,
             stats: specData.stats,
             points: 0,
-            gold: 10000,
+            gold: 0,
             inv: [
                 SHOP_USABLE['f1'],
-                SHOP_EQUIP['arm1'],
-                SHOP_EQUIP['arm1'],
-                SHOP_EQUIP['wpn1'],
-                SHOP_EQUIP['wpn1'],
-                SHOP_EQUIP['wpn2']
+                SHOP_USABLE['f3']
             ]
         })
         await write(`Ваш персонаж ${getState('player')?.name} создан!`, 'notification')

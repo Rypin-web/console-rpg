@@ -6,7 +6,8 @@ import {help} from "./commands/system/help";
 import {start} from "./commands/system/start";
 import {attack, equip, findEnemy, playerInfo, scan, setPoint, unequip, use} from "./commands/player";
 import {goToShop} from "./commands/player/public/goToShop.ts";
-import {buy, sell, shopInfo} from "./commands/shop";
+import {buy, sell, shopInfo, updateShop} from "./commands/shop";
+import {coreConstants} from "./core/constants/core.ts";
 
 window.onload = async () => {
     const app = document.querySelector<HTMLDivElement>('#app')
@@ -34,6 +35,7 @@ window.onload = async () => {
     registryCommand('sh', 's', sell, true, '-s (id): Продать предмет')
     registryCommand('pl', 'eq', equip, true, '-eq (id): Экипировать снаряжение')
     registryCommand('pl', 'ueq', unequip, true, '-ueq (id): Снять предмет')
+    registryCommand('sh', 'upd', updateShop, false, `-upd: Обновить товары в магазине. Стоит ${coreConstants.SHOP_UPDATE_COST} золота`)
 
     await write('Введите sys help чтобы узнать команды', 'notification')
     console.log('Program is running and work fine!')
