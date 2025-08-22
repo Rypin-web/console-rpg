@@ -6,10 +6,10 @@ export type TEquip = {
     type: 'weapon' | 'armor' | 'shield',
     isEquipped: boolean
     stats: {
-        strength?: number,
-        agility?: number,
+        strength: number,
+        agility: number,
     },
-    def?: number,
+    def: number,
     price: number,
     sellPrice:number,
     description: string

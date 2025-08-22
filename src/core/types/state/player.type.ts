@@ -8,9 +8,9 @@ export type TPlayer = {
         current: number
     },
     equipment:{
-        wpn: TEquip['id'] | undefined,
-        arm: TEquip['id'] | undefined,
-        shl: TEquip['id'] | undefined
+        weapon: TEquip['id'] | undefined,
+        armor: TEquip['id'] | undefined,
+        shield: TEquip['id'] | undefined
     }
     exp: {
         coefficient: number,

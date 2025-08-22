@@ -28,9 +28,9 @@ export async function start(args: string): Promise<void> {
                 current: 0
             },
             equipment: {
-                wpn: undefined,
-                arm: undefined,
-                shl: undefined
+                weapon: undefined,
+                armor: undefined,
+                shield: undefined
             },
             def: specData.def,
             lvl: 1,
