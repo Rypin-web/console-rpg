@@ -4,6 +4,7 @@ export type TEquip = {
     id: string,
     name: string,
     type: 'weapon' | 'armor' | 'shield',
+    isEquipped: boolean
     stats: {
         strength?: number,
         agility?: number,

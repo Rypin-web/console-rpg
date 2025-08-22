@@ -5,6 +5,7 @@ export const SHOP_EQUIP = {
         id: "wpn1",
         name: "Ржавый меч",
         type: "weapon",
+        isEquipped: false,
         stats: {
             strength: 0,
             agility: 5,
@@ -18,6 +19,7 @@ export const SHOP_EQUIP = {
         id: "wpn2",
         name: "Деревянный лук",
         type: "weapon",
+        isEquipped: false,
         stats: {
             strength: 0,
             agility: 8,
@@ -31,6 +33,7 @@ export const SHOP_EQUIP = {
         id: "arm1",
         name: "Роба бродяги",
         type: "armor",
+        isEquipped: false,
         stats: {
             strength: 3,
             agility: 0,
@@ -44,6 +47,7 @@ export const SHOP_EQUIP = {
         id: "arm2",
         name: "Кожаный доспех",
         type: "armor",
+        isEquipped: false,
         stats: {
             strength: 7,
             agility: 0,
@@ -57,6 +61,7 @@ export const SHOP_EQUIP = {
         id: "shl1",
         name: "Деревянный щит",
         type: "shield",
+        isEquipped: false,
         stats: {
             strength: 0,
             agility: 0,
@@ -70,6 +75,7 @@ export const SHOP_EQUIP = {
         id: "shl2",
         name: "Железный баклер",
         type: "shield",
+        isEquipped: false,
         stats: {
             strength: 0,
             agility: 0,

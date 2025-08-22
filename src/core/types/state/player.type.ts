@@ -1,4 +1,4 @@
-import type {TItem} from "./item.type.ts";
+import type {TEquip, TItem} from "./item.type.ts";
 
 export type TPlayer = {
     name: string | 'Путешественник',
@@ -7,6 +7,11 @@ export type TPlayer = {
         max: number,
         current: number
     },
+    equipment:{
+        wpn: TEquip['id'] | undefined,
+        arm: TEquip['id'] | undefined,
+        shl: TEquip['id'] | undefined
+    }
     exp: {
         coefficient: number,
         needToLvlUp: number | null,

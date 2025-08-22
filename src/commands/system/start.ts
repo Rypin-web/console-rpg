@@ -27,6 +27,11 @@ export async function start(args: string): Promise<void> {
                 needToLvlUp: 10,
                 current: 0
             },
+            equipment: {
+                wpn: undefined,
+                arm: undefined,
+                shl: undefined
+            },
             def: specData.def,
             lvl: 1,
             stats: specData.stats,
