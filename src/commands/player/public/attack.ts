@@ -32,8 +32,7 @@ export async function attack(): Promise<void> {
         } else {
             await write(`У (${enemy.name}) осталось (${enemy.hp.current}) здоровья`, 'info')
             await write(`(${enemy.name}) атакует вас!`, 'combat', [200, 50])
-            const playerObtainedDamage = enemy.att - player.def < 0 ? 0 : enemy.att - player.def
-            if (random(player.stats.luck) < 10) await takeDamage(playerObtainedDamage)
+            if (random(player.stats.luck) < 10) await takeDamage(enemy.att)
             else await write('Вы уклонились', 'combat')
         }
     } catch (e) {
