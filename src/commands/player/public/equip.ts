@@ -31,8 +31,7 @@ export async function equip(id: string): Promise<void> {
         return
     }
     const index = inv.findIndex((e) => (e === item))
-    const updateEquipment = equipment
-    updateEquipment[item.type] = item.id
+    const updateEquipment = {...equipment, [item.type]: item.id}
     const updatedStats = {
         strength: stats.strength + item.stats.strength,
         agility: stats.agility + item.stats.agility,
