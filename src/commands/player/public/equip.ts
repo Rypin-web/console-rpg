@@ -2,6 +2,7 @@ import {checkFlag} from "../../../core/utils";
 import {getState, updateState} from "../../../core/state";
 import {write} from "../../../core/cli";
 import {isEquip} from "../../../core/utils/isEquip.ts";
+import {updateStats} from "../local/updateStats.ts";
 
 export async function equip(id: string): Promise<void> {
     await checkFlag('playerIsCreated', false, [['Персонаж еще не создан. Команда невозможна', 'error']])
@@ -41,5 +42,5 @@ export async function equip(id: string): Promise<void> {
     const updatedInv = [...inv.slice(0, index), {...item, isEquip: true}, ...inv.slice(index + 1)]
     updateState('player', {stats: updatedStats, def: updatedDef, equipment: updateEquipment, inv: updatedInv})
     await write(`Вы эпировали (${item.name})`, 'notification')
-
+    updateStats(false)
 }
