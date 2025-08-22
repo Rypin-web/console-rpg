@@ -39,18 +39,11 @@ export async function start(args: string): Promise<void> {
             gold: 10000,
             inv: [
                 SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_USABLE['f1'],
-                SHOP_EQUIP['arm1']
+                SHOP_EQUIP['arm1'],
+                SHOP_EQUIP['arm1'],
+                SHOP_EQUIP['wpn1'],
+                SHOP_EQUIP['wpn1'],
+                SHOP_EQUIP['wpn2']
             ]
         })
         await write(`Ваш персонаж ${getState('player')?.name} создан!`, 'notification')

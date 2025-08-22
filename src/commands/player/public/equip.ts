@@ -39,7 +39,7 @@ export async function equip(id: string): Promise<void> {
         luck: stats.luck
     }
     const updatedDef = def + item.def
-    const updatedInv = [...inv.slice(0, index), {...item, isEquip: true}, ...inv.slice(index + 1)]
+    const updatedInv = [...inv.slice(0, index), {...item, isEquipped: true}, ...inv.slice(index + 1)]
     updateState('player', {stats: updatedStats, def: updatedDef, equipment: updateEquipment, inv: updatedInv})
     await write(`Вы эпировали (${item.name})`, 'notification')
     updateStats(false)

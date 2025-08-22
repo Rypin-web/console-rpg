@@ -16,7 +16,8 @@ export async function playerInfo(arg?: keyof TPlayer | ''): Promise<void> {
                     await write(PLAYER_INFO_LABELS.inv, 'info', [200, 50])
                     await write(`Сейчас у вас (${player.inv.length}) предметов`, 'info')
                     for (const e of player.inv) {
-                        await write('- ' + e?.name + ` (${e?.id})`, 'info', [20, 30])
+                        isEquip(e) && e.isEquipped ? await write(`- ${e?.name} (${e?.id}) (Экипировано)`, 'info', [20, 30])
+                            : await write(`- ${e?.name} (${e?.id})`, 'info', [20, 30])
                     }
                 } else {
                     const [item] = player.inv.filter((e) => (e?.id === itemId))
@@ -38,6 +39,7 @@ export async function playerInfo(arg?: keyof TPlayer | ''): Promise<void> {
             }
 
             if (Object.hasOwn(PLAYER_INFO_LABELS, arg)) {
+                //@ts-ignore
                 const infoElement = PLAYER_INFO_LABELS[arg]
                 if (typeof infoElement === 'string') await write(infoElement + player[arg], 'info')
                 if (Array.isArray(infoElement) && infoElement.length === 2) {
